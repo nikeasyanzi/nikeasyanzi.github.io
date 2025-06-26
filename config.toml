@@ -1,6 +1,5 @@
 title = "Craig Yang's Dev Blog"
-theme = 'ananke'
-#theme = "PaperModX"
+theme = "PaperModX"
 languageName = "English"
 paginate = 100
 enableRobotsTXT = true
