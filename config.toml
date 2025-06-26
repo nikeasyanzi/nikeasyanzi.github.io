@@ -1,1 +1,115 @@
+title = "Craig Yang's Dev Blog"
 theme = 'ananke'
+#theme = "PaperModX"
+languageName = "English"
+paginate = 100
+enableRobotsTXT = true
+defaultTheme = "dark"
+
+# SEO-related settings
+[params]
+description = "Craig Yang's blog on Software Development, Linux."
+keywords = ["Software Developer", "Linux", "Programming", "Obsidian"]
+images = ["4rkal.png"]
+favicon = "4rkal.png"
+showtoc = true
+tocopen = false
+TocSide = 'right'
+ShowReadingTime = true
+ShowWordCount = true
+ShowShareButtons = true
+ShowCodeCopyButtons = true
+defaultTheme = "dark"
+canonicalURL = "{{ .Permalink }}"
+author = "4rkal"
+
+# Header settings
+[params.header]
+desktopMode = "fixed"
+mobileMode = "auto"
+
+# Menu configuration
+[menu]
+[[menu.main]]
+weight = 1
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+title = "Posts"
+
+[[menu.main]]
+weight = 2
+identifier = "About"
+name = "About"
+url = "/about/"
+title = "About"
+
+[[menu.main]]
+weight = 3
+identifier = "Newsletter"
+name = "NEWSLETTER"
+url = "https://rb.gy/a6ylyh"
+title = "NEWSLETTER"
+params.external = true
+
+[[menu.main]]
+weight = 4
+identifier = "Search"
+name = "Search"
+url = "/search/"
+title = "Search the site"
+
+# Home Info Params
+[params.homeInfoParams]
+Title = "Hi, I'm 4rkal"
+Content = "I post interesting things I stumble upon. Mostly about [<u>**linux**</u>](../../tags/linux), [<u>**privacy**</u>](../../tags/privacy), [<u>**crypto**</u>](../../tags/crypto), and [<u>**programming**</u>](../../tags/programming). I also love [<u>**selfhosting**</u>](../../tags/selfhosting) stuff."
+
+# Social Icons
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/nikeasyanzi"
+
+[[params.socialIcons]]
+name = "email"
+url = "/about/#get-in-touch"
+
+[[params.socialIcons]]
+name = "monero"
+url = "/donate/"
+
+[[params.socialIcons]]
+name = "rss"
+url = "/index.xml"
+
+# Sitemap settings
+[sitemap]
+changefreq = "always"
+filename = "sitemap.xml"
+priority = 0.5
+
+# Markup settings
+[markup.goldmark.renderer]
+unsafe = true
+
+# Logo settings
+[params.logo]
+icon = "4rkal.png"
+
+[params.opengraph]
+enable = true
+title = "{{ .Title }}"
+description = "{{ .Params.description }}"
+image = "{{ .Params.images }}"
+
+[params.twitter]
+enable = true
+card = "summary_large_image"
+title = "{{ .Title }} - Craig Yang's blog"
+description = "{{ .Params.description }}"
+image = "{{ .Params.images }}"
+
+[params.search]
+enabled = true``
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
