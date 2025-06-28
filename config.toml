@@ -108,7 +108,7 @@ description = "{{ .Params.description }}"
 image = "{{ .Params.images }}"
 
 [params.search]
-enabled = true``
+enabled = true
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
