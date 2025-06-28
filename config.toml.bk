@@ -1,5 +1,5 @@
 title = "Craig Yang's Dev Blog"
-theme = "PaperMod"
+theme = "ananke"
 languageName = "English"
 paginate = 100
 enableRobotsTXT = true
@@ -20,7 +20,7 @@ ShowShareButtons = true
 ShowCodeCopyButtons = true
 defaultTheme = "dark"
 canonicalURL = "{{ .Permalink }}"
-author = "Craig Yang"
+author = "4rkal"
 
 # Header settings
 [params.header]
