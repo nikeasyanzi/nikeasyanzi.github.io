@@ -1,5 +1,7 @@
+baseURL = 'https://nikeasyanzi.github.io/'
+languageCode = 'zh-TW'
 title = "Craig Yang's Dev Blog"
-theme = "ananke"
+theme = "PaperMod"
 languageName = "English"
 paginate = 100
 enableRobotsTXT = true
@@ -20,7 +22,7 @@ ShowShareButtons = true
 ShowCodeCopyButtons = true
 defaultTheme = "dark"
 canonicalURL = "{{ .Permalink }}"
-author = "4rkal"
+author = "Craig Yang"
 
 # Header settings
 [params.header]

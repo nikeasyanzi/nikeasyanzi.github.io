@@ -6,21 +6,28 @@
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Jun 2025 17:00:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Jun 2025 16:19:45 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>http://localhost:1313/pages/about/</link>
-      <pubDate>Thu, 26 Jun 2025 17:00:23 +0800</pubDate>
-      <guid>http://localhost:1313/pages/about/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Hello_world</title>
       <link>http://localhost:1313/posts/hello_world/</link>
       <pubDate>Thu, 26 Jun 2025 16:19:45 +0800</pubDate>
       <guid>http://localhost:1313/posts/hello_world/</guid>
       <description>&lt;p&gt;first post! shit! AI is so brilliant.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>⏱ 时间轴</title>
+      <link>http://localhost:1313/archives/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/archives/</guid>
+      <description>archives</description>
+    </item>
+    <item>
+      <title>🔍 搜索</title>
+      <link>http://localhost:1313/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/search/</guid>
+      <description>search</description>
     </item>
   </channel>
 </rss>
