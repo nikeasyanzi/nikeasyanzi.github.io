@@ -1,6 +1,6 @@
 baseURL = "https://nikeasyanzi.github.io"
 languageCode = "zh-TW"
-title = "4rkal's Dev Blog"
+title = "Craig Yang's Dev Blog"
 theme = "PaperModX"
 languageName = "English"
 pagination.pagerSize = 100
@@ -28,4 +28,4 @@ ShowShareButtons = true
 ShowCodeCopyButtons = true
 defaultTheme = "dark"
 canonicalURL = "{{ .Permalink }}"
-author = "4rkal"
+author = "Craig Yang"
