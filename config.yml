@@ -1,0 +1,38 @@
+baseURL = "https://nikeasyanzi.github.io"
+languageCode = "zh-TW"
+title = "Craig Yang's Dev Blog"
+theme = "PaperModX"
+languageName = "English"
+pagination.pagerSize = 100
+enableRobotsTXT = true
+defaultTheme = "dark"
+
+# SEO-related settings
+[params]
+description = "Craig Yang's blog on Software Development, Linux, Crypto, and Selfhosting."
+keywords = [
+  "Software Developer",
+  "Linux",
+  "Selfhosting",
+  "Programming",
+  "Obsidian",
+]
+images = ["4rkal.png"]
+favicon = "4rkal.png"
+showtoc = true
+tocopen = false
+TocSide = 'right'
+ShowReadingTime = true
+ShowWordCount = true
+ShowShareButtons = true
+ShowCodeCopyButtons = true
+defaultTheme = "dark"
+canonicalURL = "{{ .Permalink }}"
+author = "Craig Yang"
+
+outputs:
+  home:
+    - HTML
+- RSS
+- JSON
+# for search page
