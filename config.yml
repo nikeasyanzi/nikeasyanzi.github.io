@@ -1,0 +1,134 @@
+baseURL: https://nikeasyanzi.github.io
+languageCode: zh-TW
+title: Craig Yang's Dev Blog
+theme: PaperModX
+languageName: English
+pagination:
+  pagerSize: 100
+enableRobotsTXT: true
+enableInlineShortcodes: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+
+params:
+  author: Craig Yang
+  keywords:
+    - Software Developer
+    - Linux
+    - Selfhosting
+    - Programming
+    - Obsidian
+  mainSections:
+    - docs
+    - posts
+  images:
+    - 4rkal.png
+  favicon: 4rkal.png
+  canonicalURL: "{{ .Permalink }}"
+  defaultTheme: light
+
+  # disableThemeToggle: true
+  ShowShareButtons: true
+  ShowReadingTime: true
+  ShowWordCount: true
+  # disableSpecial1stPost: true
+  displayFullLangName: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: true
+  TocSide: "right"
+  EnableInstantClick: true
+  EnableImageZoom: true
+  comments: true
+
+  homeInfoParams:
+    title: Craig Yang's BLOG
+    Content: |
+      Craig Yang's blog on Software Development, Linux, and Self hosting.
+      - There is all about my learning note. 
+      以後可能中英文混著寫吧～
+
+  socialIcons:
+    - name: github-simple
+      url: "https://github.com/nikeasyanzi"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/craig-yang-6b911784/"
+    - name: Gmail
+      url: "mailto:nikeasyanzi@yahoo.com.tw"
+      params:
+        external: true
+
+  commentSystems:
+    enable: true
+    disqus:
+      shortname: nikeasyanzi
+
+  defaultCommentSystems:
+    disqus: true
+
+  minify:
+    disableXML: true
+
+  languages:
+    en:
+      languageName: "English"
+      weight: 1
+      menu:
+        main:
+          - name: Tags
+            url: /tags/
+            weight: 4
+          - name: Archive
+            url: /archives/
+            weight: 5
+          - name: Search
+            url: /search/
+            weight: 10
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: dracula
+    lineNos: false
+    noClasses: false
+
+privacy:
+  #vimeo:
+  #  disabled: false
+  #  simple: true
+
+  #twitter:
+  #  disabled: false
+  #  enableDNT: true
+  #  simple: true
+
+  instagram:
+    disabled: false
+    simple: true
+
+  youtube:
+    disabled: false
+    privacyEnhanced: true
+
+services:
+  instagram:
+    disableInlineCSS: true
+  #twitter:
+  #  disableInlineCSS: true
