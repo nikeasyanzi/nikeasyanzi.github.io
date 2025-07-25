@@ -95,10 +95,10 @@ outputs:
     - RSS
     - JSON
 
-taxonomies:
-  category: categories
-  tag: tags
-  series: series
+#taxonomies:
+#  category: categories
+#  tag: tags
+#  series: series
 
 markup:
   goldmark:
@@ -108,27 +108,26 @@ markup:
     style: dracula
     lineNos: false
     noClasses: false
-
-privacy:
-  #vimeo:
-  #  disabled: false
-  #  simple: true
-
-  #twitter:
-  #  disabled: false
-  #  enableDNT: true
-  #  simple: true
-
-  instagram:
-    disabled: false
-    simple: true
-
-  youtube:
-    disabled: false
-    privacyEnhanced: true
-
-services:
-  instagram:
-    disableInlineCSS: true
-  #twitter:
-  #  disableInlineCSS: true
+#privacy:
+#  #vimeo:
+#  #  disabled: false
+#  #  simple: true
+#
+#  #twitter:
+#  #  disabled: false
+#  #  enableDNT: true
+#  #  simple: true
+#
+#  instagram:
+#    disabled: false
+#    simple: true
+#
+#  youtube:
+#    disabled: false
+#    privacyEnhanced: true
+#
+#services:
+#  instagram:
+#    disableInlineCSS: true
+#  #twitter:
+#  #  disableInlineCSS: true
