@@ -2,6 +2,10 @@
 date = '2025-07-22T16:10:56+08:00'
 draft = 'False'
 title = 'Self hosting a local AI in a minute with Ollama and Open WebUI'
+categories = ["self-hosting"]
+tags = ["self-hosting", "Ollama", "OpenWebUI"]
+ShowToc = true
+TocOpen = true
 +++
 
 # Intro
