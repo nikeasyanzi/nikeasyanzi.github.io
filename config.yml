@@ -1,66 +1,115 @@
 baseURL: https://nikeasyanzi.github.io
-languageCode: zh-TW
 title: Craig Yang's Dev Blog
+languageCode: en-us
 theme: PaperModX
 languageName: English
 pagination:
-  pagerSize: 100
-enableRobotsTXT: true
+  pagerSize: 10 # 首页每页显示的文章数
+defaultTheme: dark
+hasCJKLanguage: true # 自动检测是否包含中文日文韩文,如果文章中使用了很多中文引号的话可以开启
 enableInlineShortcodes: true
+enableEmoji: true # 允许使用 Emoji 表情，建议 true
+enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
-enableEmoji: true
+pygmentsUseClasses: true
+# googleAnalytics: UA-123-45
+
+minify:
+  disableXML: true
+  # minifyOutput: true
+
+permalinks:
+  post: "/:title/"
+  # post: "/:year/:month/:day/:title/"
 
 params:
-  author: Craig Yang
+  description: Craig Yang's blog on Software Development, Linux, Crypto, and Selfhosting.
   keywords:
     - Software Developer
     - Linux
     - Selfhosting
     - Programming
     - Obsidian
-  mainSections:
-    - docs
-    - posts
   images:
     - 4rkal.png
   favicon: 4rkal.png
-  canonicalURL: "{{ .Permalink }}"
-  defaultTheme: light
-
-  # disableThemeToggle: true
-  ShowShareButtons: true
+  
+  showtoc: true
+  tocopen: false
+  TocSide: right
+  
   ShowReadingTime: true
   ShowWordCount: true
-  # disableSpecial1stPost: true
+  # disableSpecialistPost: true
+  ShowShareButtons: true
+  ShowCodeCopyButtons: true
   displayFullLangName: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
-  ShowToc: true
-  TocOpen: true
-  TocSide: "right"
-  EnableInstantClick: true
-  EnableImageZoom: true
+  DateFormat: "2006-01-02"
+  disableThemeToggle: false
+  defaultTheme: dark
+  hideFooter: false # 隐藏页脚
+  ShowWordCounts: true
+  VisitCount: true
+  ShowLastMod: true #显示文章更新时间
   comments: true
-
+  
+  #canonicalURL: "{{ .Permalink }}"
+  author: 4rkal
+  header:
+    desktopMode: fixed
+    mobileMode: auto
   homeInfoParams:
-    title: Craig Yang's BLOG
-    Content: |
-      Craig Yang's blog on Software Development, Linux, and Self hosting.
-      - There is all about my learning note. 
+    Title: Hi, I'm Craig Yang
+    Content:
+      There is all about my learning note on Software Development, Linux, and Self hosting.
       以後可能中英文混著寫吧～
-
+      # [<u>**linux**</u>](../../tags/linux),
+      # [<u>**privacy**</u>](../../tags/privacy),
+      # [<u>**crypto**</u>](../../tags/crypto), and
+      # [<u>**programming**</u>](../../tags/programming). I also love
+      # [<u>**selfhosting**</u>](../../tags/selfhosting) stuff.
   socialIcons:
-    - name: github-simple
+    - name: github
       url: "https://github.com/nikeasyanzi"
     - name: linkedin
       url: "https://www.linkedin.com/in/craig-yang-6b911784/"
-    - name: Gmail
-      url: "mailto:nikeasyanzi@yahoo.com.tw"
-      params:
-        external: true
+    #- name: twitter
+    #  url: https://x.com/4rkal_
+    - name: email
+      url: /about/#get-in-touch
+    - name: rss
+      url: /index.xml
+  #  logo:
+  #    icon: 4rkal.png
+  #  opengraph:
+  #    enable: true
+  #    title: "{{ .Title }}"
+  #    description: "{{ .Params.description }}"
+  #    image: "{{ .Params.images }}"
+  #  twitter:
+  #    enable: true
+  #    card: summary_large_image
+  #    title: "{{ .Title }} - 4rkal's blog"
+  #    description: "{{ .Params.description }}"
+  #    image: "{{ .Params.images }}"
+  search:
+    enabled: true
+
+  # 添加搜索参数，参考 https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    includeMatches: true
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
 
   commentSystems:
     enable: true
@@ -73,62 +122,91 @@ params:
   minify:
     disableXML: true
 
-  languages:
-    en:
-      languageName: "English"
-      weight: 1
-      menu:
-        main:
-          - name: Tags
-            url: /tags/
-            weight: 4
-          - name: Archive
-            url: /archives/
-            weight: 5
-          - name: Search
-            url: /search/
-            weight: 10
+menu:
+  main:
+    - weight: 1
+      identifier: posts
+      name: Posts
+      url: /posts/
+      title: Posts
+    - weight: 2
+      identifier: About
+      name: 📗About
+      url: /about/
+      title: About
+    - weight: 4
+      identifier: Search
+      name: 🔍 Search
+      url: /search/
+      title: Search the site
+    - identifier: archives
+      name: 🗂️ archives
+      url: /archives/
+      weight: 50
+sitemap:
+  changefreq: always
+  filename: sitemap.xml
+  priority: 0.5
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 
 outputs:
   home:
     - HTML
     - RSS
     - JSON
+  
 
 taxonomies:
-  category: categories
-  tag: tags
-  series: series
+    category: categories
+    tag: tags
+    series: series
 
 markup:
-  goldmark:
-    renderer:
-      unsafe: true
-  highlight:
-    style: dracula
-    lineNos: false
-    noClasses: false
+    goldmark:
+        renderer:
+            unsafe: true # HUGO 默认转义 Markdown 文件中的 HTML 代码，如需开启的话
+    highlight:
+        # anchorLineNos: true
+        codeFences: true
+        guessSyntax: true
+        lineNos: true
+        # noClasses: false
+        # style: monokai
+        style: darcula
 
-privacy:
-  #vimeo:
-  #  disabled: false
-  #  simple: true
+        # codeFences：代码围栏功能，这个功能一般都要设为 true 的，不然很难看，就是干巴巴的-代码文字，没有颜色。
+        # guessSyntax：猜测语法，这个功能建议设置为 true, 如果你没有设置要显示的语言则会自动匹配。
+        # hl_Lines：高亮的行号，一般这个不设置，因为每个代码块我们可能希望让高亮的地方不一样。
+        # lineNoStart：行号从编号几开始，一般从 1 开始。
+        # lineNos：是否显示行号，我比较喜欢显示，所以我设置的为 true.
+        # lineNumbersInTable：使用表来格式化行号和代码,而不是 标签。这个属性一般设置为 true.
+        # noClasses：使用 class 标签，而不是内嵌的内联样式
 
-  #twitter:
-  #  disabled: false
-  #  enableDNT: true
-  #  simple: true
+#privacy:
+#    vimeo:
+#        disabled: false
+#        simple: true
 
-  instagram:
-    disabled: false
-    simple: true
+#    twitter:
+#        disabled: false
+#        enableDNT: true
+#        simple: true
 
-  youtube:
-    disabled: false
-    privacyEnhanced: true
+#    instagram:
+#        disabled: false
+#        simple: true
+#
+#    youtube:
+#        disabled: false
+#        privacyEnhanced: true
+#
+#services:
+#    instagram:
+#        disableInlineCSS: true
+#    twitter:
+#        disableInlineCSS: true
 
-services:
-  instagram:
-    disableInlineCSS: true
-  #twitter:
-  #  disableInlineCSS: true
+
