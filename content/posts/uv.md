@@ -2,6 +2,10 @@
 date = '2025-07-01T22:40:45+08:00'
 draft = 'False'
 title = 'UV: A Python Package Management Tool'
+categories = ["Python"]
+tags = ["Python","UV"]
+ShowToc = true
+TocOpen = true
 +++
 
 It's been a headache to manage Python packages. But I feel I am saved from that when I meet [UV](https://github.com/astral-sh/uv).
