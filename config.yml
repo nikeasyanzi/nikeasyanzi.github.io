@@ -80,13 +80,13 @@ params:
       menu:
         main:
           - name: Tags
-            url: /tags/
+            url: tags/
             weight: 4
           - name: Archive
-            url: /archives/
+            url: archives/
             weight: 5
           - name: Search
-            url: /search/
+            url: search/
             weight: 10
 
 outputs:
