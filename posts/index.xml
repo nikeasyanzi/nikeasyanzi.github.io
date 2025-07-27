@@ -64,7 +64,7 @@ We see the downloaded llama3.2 model and the new created open-webui folder for O
 <ol start="7">
 <li>Run Open Web UI image</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 3000:8080 --add-host<span style="color:#f92672">=</span>host.docker.internal:host-gateway -v ./open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d -p 3000:8080 --add-host<span class="o">=</span>host.docker.internal:host-gateway -v ./open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 </span></span></code></pre></div><p>It would takes a while to get the container ready to work. Once, the status shows healthy, we can try to open http://localhost:3000
 
   <img loading="lazy" src="https://i.imgur.com/Z1FnT1m.png" alt=""  /></p>
