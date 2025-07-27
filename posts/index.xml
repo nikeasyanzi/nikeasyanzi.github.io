@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Craig Yang&#39;s Dev Blog</title>
-    <link>https://nikeasyanzi.github.io/</link>
-    <description>Recent content on Craig Yang&#39;s Dev Blog</description>
+    <title>Posts on Craig Yang&#39;s Dev Blog</title>
+    <link>https://nikeasyanzi.github.io/posts/</link>
+    <description>Recent content in Posts on Craig Yang&#39;s Dev Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Jul 2025 16:10:56 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Jul 2025 16:10:56 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Self hosting a local AI in a minute with Ollama and Open WebUI</title>
       <link>https://nikeasyanzi.github.io/posts/self-hosting-chatgpt-in-a-minute/</link>
