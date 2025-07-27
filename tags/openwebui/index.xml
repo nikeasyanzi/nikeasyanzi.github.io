@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Jul 2025 16:10:56 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/tags/openwebui/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Posts</title>
+      <link>https://nikeasyanzi.github.io/posts/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      
+      <guid>https://nikeasyanzi.github.io/posts/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
       <title>Self hosting a local AI in a minute with Ollama and Open WebUI</title>
       <link>https://nikeasyanzi.github.io/posts/self-hosting-chatgpt-in-a-minute/</link>
       <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
