@@ -74,5 +74,9 @@
     <loc>https://nikeasyanzi.github.io/search/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/series/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
