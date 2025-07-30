@@ -1,14 +1,15 @@
 ---
-title: "About this place...." # in any language you want
-layout: "about" # necessary for search
+title: "About Me" # in any language you want
+#layout: "about" # necessary for search
 # url: "/archive"
 # description: "Description for Search"
-summary: "about"
+#summary: "about"
 # 是否隐藏标签
 hideTags: false
 tagsTitle: tags
 # 是否隐藏系列
 hideSeries: false
+disableComments: true
 seriesTitle: series
 ---
 
