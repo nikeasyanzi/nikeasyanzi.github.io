@@ -67,6 +67,10 @@
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://nikeasyanzi.github.io/about/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://nikeasyanzi.github.io/archives/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
