@@ -124,25 +124,25 @@ params:
 
 menu:
   main:
-    - weight: 1
-      identifier: posts
-      name: Posts
+    - identifier: posts
+      name: 📚 Posts
       url: /posts/
       title: Posts
-    - weight: 2
-      identifier: About
-      name: 📗About
-      url: /about/
-      title: About
-    - weight: 4
-      identifier: Search
+      weight: 10
+    - identifier: Search
       name: 🔍 Search
       url: /search/
       title: Search the site
+      weight: 20
     - identifier: archives
       name: 🗂️ archives
       url: /archives/
-      weight: 50
+      weight: 30
+    - identifier: About
+      name: 😎 About
+      url: /about/
+      title: About
+      weight: 40
 sitemap:
   changefreq: always
   filename: sitemap.xml
