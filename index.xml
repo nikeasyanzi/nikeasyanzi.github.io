@@ -6,128 +6,11 @@
     <description>Recent content on Craig Yang&#39;s Dev Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Jul 2025 16:10:56 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Sep 2025 16:10:56 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Self hosting a local AI in a minute with Ollama and Open WebUI</title>
-      <link>https://nikeasyanzi.github.io/posts/self-hosting-chatgpt-in-a-minute/</link>
-      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
-      
-      <guid>https://nikeasyanzi.github.io/posts/self-hosting-chatgpt-in-a-minute/</guid>
-      <description>&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;With &lt;a href=&#34;https://ollama.com/&#34;&gt;ollama&lt;/a&gt; and &lt;a href=&#34;https://github.com/open-webui/open-webui&#34;&gt;Open WebUI&lt;/a&gt;, self-hosting a chatgpt like service is possible. It&amp;rsquo;s definitely a great news for people or corporations concerning about sharing their data with AI service providers.
-In this article, I will show you how to setup a service in local environment.&lt;/p&gt;
-&lt;h1 id=&#34;steps&#34;&gt;Steps&lt;/h1&gt;
-&lt;p&gt;First of all, there are 2 services we need to setup, and we will host the service on container.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Pull &lt;a href=&#34;https://hub.docker.com/r/ollama/ollama&#34;&gt;ollama container image&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker pull ollama/ollama:latest
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;Before we run the service, we need to download a model from &lt;a href=&#34;https://ollama.com/models&#34;&gt;ollama model&lt;/a&gt;. For experiment, we select llama3.2.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;
-  &lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/iwluBge.png&#34; alt=&#34;&#34;  /&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h1 id="intro">Intro</h1>
-<p>With <a href="https://ollama.com/">ollama</a> and <a href="https://github.com/open-webui/open-webui">Open WebUI</a>, self-hosting a chatgpt like service is possible. It&rsquo;s definitely a great news for people or corporations concerning about sharing their data with AI service providers.
-In this article, I will show you how to setup a service in local environment.</p>
-<h1 id="steps">Steps</h1>
-<p>First of all, there are 2 services we need to setup, and we will host the service on container.</p>
-<ol>
-<li>Pull <a href="https://hub.docker.com/r/ollama/ollama">ollama container image</a></li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker pull ollama/ollama:latest
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li>Before we run the service, we need to download a model from <a href="https://ollama.com/models">ollama model</a>. For experiment, we select llama3.2.</li>
-</ol>
-<p>
-  <img loading="lazy" src="https://i.imgur.com/iwluBge.png" alt=""  /></p>
-<p>
-  <img loading="lazy" src="https://i.imgur.com/lnBbjDQ.png" alt=""  /></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker exec 5eeaf ollama pull llama3.2
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Here, I select model llama3.2. It takes a while to download depends on the network and size of selected model.<br>
-
-  <img loading="lazy" src="https://i.imgur.com/DfxrHZv.png" alt=""  /></p>
-<ol start="3">
-<li>Run ollama service</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run -d -v $(PWD):/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="4">
-<li>Pull Open Web UI image</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker pull ghcr.io/open-webui/open-webui:latest
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="5">
-<li>We create a folder named open-webui. Now, the directory lay out looks like the following.
-We see the downloaded llama3.2 model and the new created open-webui folder for Open Web UI data placement..</li>
-</ol>
-<p>
-  <img loading="lazy" src="https://i.imgur.com/OBRCjpR.png" alt=""  /></p>
-<ol start="7">
-<li>Run Open Web UI image</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d -p 3000:8080 --add-host<span class="o">=</span>host.docker.internal:host-gateway -v ./open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>It would takes a while to get the container ready to work. Once, the status shows healthy, we can try to open http://localhost:3000
-
-  <img loading="lazy" src="https://i.imgur.com/Z1FnT1m.png" alt=""  /></p>
-<ol start="8">
-<li>For first time login, we will need to register a new account
-
-  <img loading="lazy" src="https://i.imgur.com/iA3YErw.png" alt=""  /></li>
-<li>Once we log in with success, we can see the llama3.2 is selected and we can start to play with it.</li>
-</ol>
-<p>
-  <img loading="lazy" src="https://i.imgur.com/WJLODOh.png" alt=""  /></p>
-<h1 id="docker-compose-with-service">Docker compose with service</h1>
-<p>I also write up a docker compose file, so we can host the file with one click. Check it out.
-<a href="https://github.com/nikeasyanzi/my-toolbox/tree/main/ollama_openwebui">https://github.com/nikeasyanzi/my-toolbox/tree/main/ollama_openwebui</a></p>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>Self hosting a local AI in a minute with Ollama and Open WebUI</title>
+      <title>Self hosting local n8n service</title>
       <link>https://nikeasyanzi.github.io/posts/self-hosting-n8n-with-docker/</link>
-      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      <pubDate>Thu, 04 Sep 2025 16:10:56 +0800</pubDate>
       
       <guid>https://nikeasyanzi.github.io/posts/self-hosting-n8n-with-docker/</guid>
       <description>&lt;h1 id=&#34;steps&#34;&gt;Steps&lt;/h1&gt;
@@ -271,6 +154,123 @@ We see the downloaded llama3.2 model and the new created open-webui folder for O
   <img loading="lazy" src="https://i.imgur.com/aYferHm.png" alt=""  /></p>
 <h1 id="reference">Reference</h1>
 <p><a href="https://darrenjon.com/docs/n8n/n8n-docker-setup/">https://darrenjon.com/docs/n8n/n8n-docker-setup/</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Self hosting a local AI in a minute with Ollama and Open WebUI</title>
+      <link>https://nikeasyanzi.github.io/posts/self-hosting-chatgpt-in-a-minute/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      
+      <guid>https://nikeasyanzi.github.io/posts/self-hosting-chatgpt-in-a-minute/</guid>
+      <description>&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;With &lt;a href=&#34;https://ollama.com/&#34;&gt;ollama&lt;/a&gt; and &lt;a href=&#34;https://github.com/open-webui/open-webui&#34;&gt;Open WebUI&lt;/a&gt;, self-hosting a chatgpt like service is possible. It&amp;rsquo;s definitely a great news for people or corporations concerning about sharing their data with AI service providers.
+In this article, I will show you how to setup a service in local environment.&lt;/p&gt;
+&lt;h1 id=&#34;steps&#34;&gt;Steps&lt;/h1&gt;
+&lt;p&gt;First of all, there are 2 services we need to setup, and we will host the service on container.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pull &lt;a href=&#34;https://hub.docker.com/r/ollama/ollama&#34;&gt;ollama container image&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker pull ollama/ollama:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Before we run the service, we need to download a model from &lt;a href=&#34;https://ollama.com/models&#34;&gt;ollama model&lt;/a&gt;. For experiment, we select llama3.2.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/iwluBge.png&#34; alt=&#34;&#34;  /&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h1 id="intro">Intro</h1>
+<p>With <a href="https://ollama.com/">ollama</a> and <a href="https://github.com/open-webui/open-webui">Open WebUI</a>, self-hosting a chatgpt like service is possible. It&rsquo;s definitely a great news for people or corporations concerning about sharing their data with AI service providers.
+In this article, I will show you how to setup a service in local environment.</p>
+<h1 id="steps">Steps</h1>
+<p>First of all, there are 2 services we need to setup, and we will host the service on container.</p>
+<ol>
+<li>Pull <a href="https://hub.docker.com/r/ollama/ollama">ollama container image</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker pull ollama/ollama:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>Before we run the service, we need to download a model from <a href="https://ollama.com/models">ollama model</a>. For experiment, we select llama3.2.</li>
+</ol>
+<p>
+  <img loading="lazy" src="https://i.imgur.com/iwluBge.png" alt=""  /></p>
+<p>
+  <img loading="lazy" src="https://i.imgur.com/lnBbjDQ.png" alt=""  /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker exec 5eeaf ollama pull llama3.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here, I select model llama3.2. It takes a while to download depends on the network and size of selected model.<br>
+
+  <img loading="lazy" src="https://i.imgur.com/DfxrHZv.png" alt=""  /></p>
+<ol start="3">
+<li>Run ollama service</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run -d -v $(PWD):/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>Pull Open Web UI image</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker pull ghcr.io/open-webui/open-webui:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>We create a folder named open-webui. Now, the directory lay out looks like the following.
+We see the downloaded llama3.2 model and the new created open-webui folder for Open Web UI data placement..</li>
+</ol>
+<p>
+  <img loading="lazy" src="https://i.imgur.com/OBRCjpR.png" alt=""  /></p>
+<ol start="7">
+<li>Run Open Web UI image</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d -p 3000:8080 --add-host<span class="o">=</span>host.docker.internal:host-gateway -v ./open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It would takes a while to get the container ready to work. Once, the status shows healthy, we can try to open http://localhost:3000
+
+  <img loading="lazy" src="https://i.imgur.com/Z1FnT1m.png" alt=""  /></p>
+<ol start="8">
+<li>For first time login, we will need to register a new account
+
+  <img loading="lazy" src="https://i.imgur.com/iA3YErw.png" alt=""  /></li>
+<li>Once we log in with success, we can see the llama3.2 is selected and we can start to play with it.</li>
+</ol>
+<p>
+  <img loading="lazy" src="https://i.imgur.com/WJLODOh.png" alt=""  /></p>
+<h1 id="docker-compose-with-service">Docker compose with service</h1>
+<p>I also write up a docker compose file, so we can host the file with one click. Check it out.
+<a href="https://github.com/nikeasyanzi/my-toolbox/tree/main/ollama_openwebui">https://github.com/nikeasyanzi/my-toolbox/tree/main/ollama_openwebui</a></p>
 ]]></content:encoded>
     </item>
     
