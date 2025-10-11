@@ -6,7 +6,131 @@
     <description>Recent content on Craig Yang&#39;s Dev Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Sep 2025 16:43:38 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Oct 2025 16:43:38 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Container Monitoring With cAdvisor</title>
+      <link>https://nikeasyanzi.github.io/posts/container-monitoring-with-cadvisor/</link>
+      <pubDate>Sat, 11 Oct 2025 16:43:38 +0800</pubDate>
+      
+      <guid>https://nikeasyanzi.github.io/posts/container-monitoring-with-cadvisor/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Nowadays, in micro service architecture, engineers would host multiple containers to provide services, container monitor become a hot topic. In this post, we use &lt;a href=&#34;https://github.com/google/cadvisor&#34;&gt;cAdvisor&lt;/a&gt; to monitor all containers running on the host and visualize the data with Grafana.&lt;/p&gt;
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+&lt;p&gt;Scripts for this experiment
+&lt;a href=&#34;https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker&#34;&gt;https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here is the configuration for cadvisor in the docker compose file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;cadvisor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;cadvisor&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;gcr.io/cadvisor/cadvisor:latest&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;privileged&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;/:/rootfs:ro&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;/var/run:/var/run:rw&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;/var/lib/docker/:/var/lib/docker&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;/sys:/sys:ro&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/disk/:/dev/disk&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;devices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/kmsg&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#  for kernel message&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Once all containers are up and running,
+
+  &lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/d072x3l.png&#34; alt=&#34;&#34;  /&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h1 id="introduction">Introduction</h1>
+<p>Nowadays, in micro service architecture, engineers would host multiple containers to provide services, container monitor become a hot topic. In this post, we use <a href="https://github.com/google/cadvisor">cAdvisor</a> to monitor all containers running on the host and visualize the data with Grafana.</p>
+<h1 id="setup">Setup</h1>
+<p>Scripts for this experiment
+<a href="https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker">https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker</a></p>
+<p>Here is the configuration for cadvisor in the docker compose file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">cadvisor</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">cadvisor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/cadvisor/cadvisor:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;8080:8080&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;/:/rootfs:ro&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;/var/run:/var/run:rw&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;/var/lib/docker/:/var/lib/docker&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;/sys:/sys:ro&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;/dev/disk/:/dev/disk&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">devices</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;/dev/kmsg&#34;</span><span class="w"> </span><span class="c">#  for kernel message</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once all containers are up and running,
+
+  <img loading="lazy" src="https://i.imgur.com/d072x3l.png" alt=""  /></p>
+<p>We check cAdvisor by the link <a href="http://localhost:8080/containers/">http://localhost:8080/containers/</a>.
+We can see the list of all running containers</p>
+<p>
+  <img loading="lazy" src="https://i.imgur.com/tLmdWTM.png" alt=""  /></p>
+<p>Also, scrolling the page down, we can see the CPU and memory usages of each container runtimes.
+
+  <img loading="lazy" src="https://i.imgur.com/nTzL1Do.png" alt=""  /></p>
+<p>Then we goto grafana, <a href="http://localhost:3000">http://localhost:3000</a>
+We add a dashboard for the data visualization of the containers.</p>
+<ul>
+<li>for cadvisor: <a href="https://grafana.com/grafana/dashboards/13946">https://grafana.com/grafana/dashboards/13946</a>
+
+  <img loading="lazy" src="https://i.imgur.com/hoyOB6h.png" alt=""  /></li>
+</ul>
+<p>For experiment purpose, k6 stress is used to generate traffics and see if the traffic is reflected on our system.
+
+  <img loading="lazy" src="https://i.imgur.com/IBNiAJE.png" alt=""  /></p>
+<p>Switching to the dashboard and at the bottom, we can see the RX/TX traffic coming in.
+
+  <img loading="lazy" src="https://i.imgur.com/4WkcDFI.png" alt=""  /></p>
+<h1 id="conclusion">Conclusion</h1>
+<p>We successfully setting up a system for container monitoring. That includes 1. set up cAdvisor to monitor container metrics 2. integrated cAdvisor with Grafana for visualization</p>
+<p>Also, we generate loading with k6 to validate the system capabilities.</p>
+<h1 id="reference">Reference</h1>
+<p><a href="https://medium.com/@jsantoine24/monitoring-docker-containers-with-cadvisor-ed21a9cfae95">https://medium.com/@jsantoine24/monitoring-docker-containers-with-cadvisor-ed21a9cfae95</a>
+<a href="https://blog.darkthread.net/blog/cadvisor-prometheus-grafana/">https://blog.darkthread.net/blog/cadvisor-prometheus-grafana/</a></p>
+<p><a href="https://medium.com/@sohammohite/docker-container-monitoring-with-cadvisor-prometheus-and-grafana-using-docker-compose-b47ec78efbc">https://medium.com/@sohammohite/docker-container-monitoring-with-cadvisor-prometheus-and-grafana-using-docker-compose-b47ec78efbc</a></p>
+<p><a href="https://blog.devops.dev/monitoring-with-cadvisor-prometheus-and-grafana-on-docker-8fc5c4a2eae7">https://blog.devops.dev/monitoring-with-cadvisor-prometheus-and-grafana-on-docker-8fc5c4a2eae7</a></p>
+<p><a href="https://medium.com/@varunjain2108/monitoring-docker-containers-with-cadvisor-prometheus-and-grafana-d101b4dbbc84">https://medium.com/@varunjain2108/monitoring-docker-containers-with-cadvisor-prometheus-and-grafana-d101b4dbbc84</a></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Visualized Monitoring With Prometheus and Grafana</title>
       <link>https://nikeasyanzi.github.io/posts/visualized-monitoring-with-prometheus-grafana/</link>
