@@ -2,22 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://nikeasyanzi.github.io/posts/container-monitoring-with-cadvisor/</loc>
-    <lastmod>2025-10-11T16:43:38+08:00</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://nikeasyanzi.github.io/</loc>
-    <lastmod>2025-10-11T16:43:38+08:00</lastmod>
+    <lastmod>2025-10-18T23:33:17+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://nikeasyanzi.github.io/tags/observibility/</loc>
-    <lastmod>2025-10-11T16:43:38+08:00</lastmod>
+    <lastmod>2025-10-18T23:33:17+08:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/posts/system-log-collection-with-grafana-loki-and-alloy/</loc>
+    <lastmod>2025-10-18T23:33:17+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://nikeasyanzi.github.io/tags/</loc>
+    <lastmod>2025-10-18T23:33:17+08:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/posts/container-monitoring-with-cadvisor/</loc>
     <lastmod>2025-10-11T16:43:38+08:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>

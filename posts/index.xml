@@ -8,6 +8,171 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Jul 2025 16:10:56 +0800</lastBuildDate><atom:link href="https://nikeasyanzi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>System Log Collection With Grafana Loki and Alloy</title>
+      <link>https://nikeasyanzi.github.io/posts/system-log-collection-with-grafana-loki-and-alloy/</link>
+      <pubDate>Sat, 18 Oct 2025 23:33:17 +0800</pubDate>
+      
+      <guid>https://nikeasyanzi.github.io/posts/system-log-collection-with-grafana-loki-and-alloy/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;In this article, we demonstrate how to effectively collecting logs with &lt;a href=&#34;https://github.com/grafana/alloy&#34;&gt;Alloy&lt;/a&gt; and &lt;a href=&#34;https://github.com/grafana/loki&#34;&gt;Loki&lt;/a&gt;.
+With that, telemetry signals from applications, infrastructures are exported to on place for future telemetry.&lt;/p&gt;
+&lt;p&gt;In the lab exercise, we try to setup a Nginx service along with Loki, Alloy, and observe the system log on Grafana.&lt;/p&gt;
+&lt;h1 id=&#34;configuration-deep-dive&#34;&gt;Configuration deep dive&lt;/h1&gt;
+&lt;h2 id=&#34;grafana-alloy-configuration&#34;&gt;Grafana Alloy configuration&lt;/h2&gt;
+&lt;p&gt;A configuration file &lt;code&gt;config.alloy&lt;/code&gt; is used, that contains logs to collect and where to forward them to.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h1 id="introduction">Introduction</h1>
+<p>In this article, we demonstrate how to effectively collecting logs with <a href="https://github.com/grafana/alloy">Alloy</a> and <a href="https://github.com/grafana/loki">Loki</a>.
+With that, telemetry signals from applications, infrastructures are exported to on place for future telemetry.</p>
+<p>In the lab exercise, we try to setup a Nginx service along with Loki, Alloy, and observe the system log on Grafana.</p>
+<h1 id="configuration-deep-dive">Configuration deep dive</h1>
+<h2 id="grafana-alloy-configuration">Grafana Alloy configuration</h2>
+<p>A configuration file <code>config.alloy</code> is used, that contains logs to collect and where to forward them to.</p>
+<h2 id="loki-configuration">Loki Configuration</h2>
+<p>Grafana Loki requires a configuration file to define how it should run. Within the loki-fundamentals directory, you will find a file called <em>loki-config.yaml</em>.</p>
+<h2 id="grafana-loki-data-source">Grafana Loki Data source</h2>
+<p>This is used by Grafana to connect to Loki and query the logs. Grafana has multiple ways to define a data source;</p>
+<ul>
+<li>Direct: This is where you define the data source in the Grafana UI.</li>
+<li>Provisioning: This is where you define the data source in a configuration file and have Grafana automatically create the data source.</li>
+<li>API: This is where you use the Grafana API to create the data source.</li>
+</ul>
+<p>In the following lab part, we are using the provisioning method. We have defined the data source in this portion of the docker-compose.yml file:</p>
+<h1 id="lab-exercise">Lab exercise</h1>
+<p>The full configuration and docker-compose file can be found <a href="https://github.com/nikeasyanzi/loki-alloy-Grafana">here</a>
+In the repo,
+<em>config.alloy</em> is the configuration file for alloy.
+<em>loki-config.yam</em> is the configuration file for loki.
+grafana-dashboard.json
+grafana-datasources.yml defining the datasource for grafana
+grafana-default.yaml
+grafana-data is the folder for grafana database</p>
+<h2 id="starting-the-service">Starting the service</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker-compose -f ./docker-compose.yml up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>
+  <img loading="lazy" src="https://i.imgur.com/0U9B96d.png" alt=""  /></p>
+<p>Next, we check the service status.</p>
+<ol>
+<li>nginx
+<a href="http://10.122.168.81:8082/stub_status">http://10.122.168.81:8082/stub_status</a></li>
+<li>loki
+ <a href="http://localhost:3100/metrics">http://localhost:3100/metrics</a></li>
+<li>alloy
+<a href="http://localhost:12345/">http://localhost:12345/</a></li>
+</ol>
+<p>When checking the alloy status, we see the loki components are up and running.
+
+  <img loading="lazy" src="https://i.imgur.com/vL5XLtX.png" alt=""  /></p>
+<p>We can also navigate the Alloy UI at <a href="http://localhost:12345/graph">http://localhost:12345/graph</a> to see the configuration file <code>config.alloy</code>visually. The configuration file defines logs to collect and where to forward them to.</p>
+<ul>
+<li>
+<p>discovery.docker: This component queries the metadata of the Docker environment via the Docker socket and discovers new containers, as well as providing metadata about the containers.</p>
+</li>
+<li>
+<p>discovery.relabel: This component converts a metadata (__meta_docker_container_name) label into a Loki label (container).</p>
+</li>
+<li>
+<p>loki.source.docker: This component collects logs from the discovered containers and forwards them to the next component. It requests the metadata from the discovery.docker component and applies the relabeling rules from the discovery.relabel component.</p>
+</li>
+<li>
+<p>loki.process: This component provides stages for log transformation and extraction. In this case it adds a static label env=production to all logs.</p>
+</li>
+<li>
+<p>loki.write: This component writes the logs to Loki. It forwards the logs to the Loki endpoint <a href="http://loki:3100/loki/api/v1/push">http://loki:3100/loki/api/v1/push</a>.</p>
+</li>
+</ul>
+<p>
+  <img loading="lazy" src="https://i.imgur.com/SR3QRQc.png" alt=""  /></p>
+<ol start="4">
+<li>Next, we configure Grafana to visualize the data collected by loki.
+
+  <img loading="lazy" src="https://i.imgur.com/ebB1Tdi.png" alt=""  /></li>
+</ol>
+<p>Click Save&amp;test to check the connectivity.
+
+  <img loading="lazy" src="https://i.imgur.com/CBBP1Pa.png" alt=""  /></p>
+<h2 id="check-logs-of-our-services">Check logs of our services</h2>
+<p>Once the service is up and running, we can navigate to <a href="http://localhost:3000/drilldown">http://localhost:3000/drilldown</a>.
+Select Logs. You should see the Grafana Logs Drilldown page.</p>
+<p>We can see Alloy is able to tail the Nginx log, also other container&rsquo;s logs are also collected.
+
+  <img loading="lazy" src="https://i.imgur.com/GQjy4oQ.png" alt=""  /></p>
+<h2 id="query-logs">Query logs</h2>
+<p>To manually query Loki to ask more advanced questions about the logs, we use Grafana Explore.
+Open a browser and navigate to <a href="http://localhost:3000">http://localhost:3000</a> to open Grafana.
+From the Grafana main menu, click the Explore icon (1) to open the Explore tab.
+Click <strong>Code</strong> to work in Code mode and type <strong>{container=&ldquo;nginx&rdquo;}</strong>
+
+  <img loading="lazy" src="https://i.imgur.com/cj7PM4O.png" alt=""  /></p>
+<p>Also here , we keep restart the Nginx service every 30s.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">for</span> i in <span class="o">{</span>1..6<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;This is loop number </span><span class="nv">$i</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  docker restart nginx
+</span></span><span class="line"><span class="cl">  sleep <span class="m">30</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="how-to-add-my-application-log-to-grafana">How to add my application log to Grafana</h1>
+<p>如何自訂application log 呢？
+從官網給的<a href="https://github.com/grafana/loki-fundamentals/tree/getting-started/greenhouse">greenhouse 範例</a>, 在in main_app.py, 我們看到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">logging.basicConfig(
+</span></span><span class="line"><span class="cl">    format=&#39;ts=%(asctime)s,%(msecs)03d level=%(levelname)s line=%(lineno)d msg=&#34;%(message)s&#34;&#39;,
+</span></span><span class="line"><span class="cl">    datefmt=&#39;%Y-%m-%d %H:%M:%S&#39;
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">log = logging.getLogger(&#39;werkzeug&#39;)
+</span></span><span class="line"><span class="cl">log.setLevel(logging.INFO)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以其實寫到system log 即可</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>This note demonstrated how to set up a log collection system using:
+<strong>Grafana Alloy</strong>, <strong>Loki</strong> and <strong>Grafana</strong>.</p>
+<ol>
+<li>how to collect logs using <strong>Grafana Alloy</strong> and send to <strong>Loki</strong></li>
+<li>how the collected logs been configured in <strong>Grafana</strong>.</li>
+</ol>
+<p>To sum up, the solution provides a way to redirect the log used to be generated at local to remote Grafana serve. That provides a unified interface.</p>
+<h1 id="reference">Reference</h1>
+<p><a href="https://medium.com/@venkat65534/full-stack-observability-with-grafana-prometheus-loki-tempo-and-opentelemetry-90839113d17d">https://medium.com/@venkat65534/full-stack-observability-with-grafana-prometheus-loki-tempo-and-opentelemetry-90839113d17d</a></p>
+<p><a href="https://github.com/grafana/loki-fundamentals">https://github.com/grafana/loki-fundamentals</a></p>
+<p><a href="https://grafana.com/docs/loki/latest/get-started/quick-start/tutorial/">https://grafana.com/docs/loki/latest/get-started/quick-start/tutorial/</a></p>
+<p><a href="https://github.com/grafana/docker-monitor-workshop">https://github.com/grafana/docker-monitor-workshop</a></p>
+<p><a href="https://ithelp.ithome.com.tw/articles/10335935">https://ithelp.ithome.com.tw/articles/10335935</a></p>
+<p><a href="https://medium.com/@fawenyo/python-%E7%9B%A3%E6%8E%A7-prometheus-loki-grafana-25ead4bbb681">https://medium.com/@fawenyo/python-%E7%9B%A3%E6%8E%A7-prometheus-loki-grafana-25ead4bbb681</a></p>
+<p><a href="https://medium.com/@derekjan1240/grafana-loki-prometheus-with-docker-compose-75d431bd07e2">https://medium.com/@derekjan1240/grafana-loki-prometheus-with-docker-compose-75d431bd07e2</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>Container Monitoring With cAdvisor</title>
       <link>https://nikeasyanzi.github.io/posts/container-monitoring-with-cadvisor/</link>
       <pubDate>Sat, 11 Oct 2025 16:43:38 +0800</pubDate>
@@ -479,7 +644,7 @@ We add a dashboard for the data visualization of the containers.</p>
 </div><ol start="2">
 <li>Check service status
 
-  <img loading="lazy" src="https://i.imgur.com/CeS2yAn.png" alt=""  /></li>
+  <img loading="lazy" src="https://i.imgur.com/IXdp3Vx.png" alt=""  /></li>
 </ol>
 <h1 id="service-check-and-troubleshooting">Service check and troubleshooting</h1>
 <p>Next, we check the service status and make sure metrics are exported on the browser.</p>
