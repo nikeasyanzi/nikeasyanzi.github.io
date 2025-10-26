@@ -4,3 +4,6 @@
 [submodule "themes/hugo-PaperMod"]
 	path = themes/hugo-PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "reference/git-sub-module"]
+	path = reference/git-sub-module
+	url = https://github.com/reorx/hugo-PaperModX.git
