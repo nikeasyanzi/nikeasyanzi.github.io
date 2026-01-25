@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/tw/</link>
+    <description>Recent content on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Fri, 23 Jan 2026 16:43:38 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/tw/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>可觀測性 Observability</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/observability/</link>
+      <pubDate>Fri, 23 Jan 2026 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/observability/</guid>
+      <description>&lt;h1 id=&#34;可觀測性-observability&#34;&gt;可觀測性 (Observability)&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/FEPLgvU.png&#34;&gt;
+&lt;a href=&#34;https://developer.ibm.com/articles/observability-insights-and-automation/&#34;&gt;來源&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;可觀測性&lt;/strong&gt;是一種實踐方法，透過對系統進行埋點來收集數據，讓你能夠從外部了解系統的內部狀態。&lt;/p&gt;
+&lt;p&gt;在現代複雜的環境中，如微服務架構，我們需要分層的可觀測性來幫助我們了解從業務層到底層基礎設施的狀態。可觀測性讓你能夠透過對系統行為提出任意問題，來探索和除錯那些你從未見過的問題（「未知的未知」）。&lt;/p&gt;
+&lt;p&gt;上圖金字塔清楚描繪了一個常見的業務場景：從發現服務停止運作，到 IT 團隊需要深入調查事件的過程。&lt;/p&gt;
+&lt;p&gt;為了達成這個目標，應用程式必須進行埋點以發送&lt;strong&gt;遙測數據 (Telemetry)&lt;/strong&gt;——關於其效能和行為的數據。這些數據通常被分為三個基礎支柱。&lt;/p&gt;
+&lt;h2 id=&#34;可觀測性的三大支柱&#34;&gt;可觀測性的三大支柱&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/OU4NjDB.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.ibm.com/articles/observability-insights-and-automation/&#34;&gt;來源&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;雖然指標、日誌和追蹤常被稱為「三大支柱」，但它們真正的威力在於相互關聯，讓你能夠在它們之間無縫切換來診斷問題。&lt;/p&gt;
+&lt;h3 id=&#34;1-指標-metrics發生了什麼&#34;&gt;1. 指標 (Metrics)：「發生了什麼」&lt;/h3&gt;
+&lt;p&gt;指標是在一段時間內收集的聚合數值數據。它們非常適合用來快速了解系統的整體健康狀況以及設定警報。例如：CPU 使用率、API 回應時間&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;它們能回答的問題：&lt;/strong&gt;「CPU 使用率是多少？」、「我的 API 錯誤率是多少？」、「我們每秒處理多少請求？」&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;關鍵概念：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;維度 (Dimensionality)：&lt;/strong&gt; 當指標具有維度（也稱為標籤或標記）時會更加強大，維度是提供上下文的鍵值對。例如，不只是 &lt;code&gt;http_requests_total&lt;/code&gt;，你可以有 &lt;code&gt;http_requests_total{method=&amp;quot;POST&amp;quot;, status=&amp;quot;500&amp;quot;}&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;基數 (Cardinality)：&lt;/strong&gt; 這是指維度的唯一組合數量。&lt;strong&gt;高基數&lt;/strong&gt;（例如使用唯一的 &lt;code&gt;userID&lt;/code&gt; 作為維度）對於監控系統的儲存和查詢效率來說是個挑戰。隨著時間序列數量的增長，查詢變得更加消耗計算資源。此外，任何重大事件，例如涉及不可變基礎設施的程式碼發布，都會導致大量同時寫入資料庫的操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;典型工具：&lt;/strong&gt; &lt;strong&gt;Prometheus&lt;/strong&gt; 是收集和儲存時間序列指標數據的領先開源工具。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-日誌-logs為什麼發生&#34;&gt;2. 日誌 (Logs)：「為什麼發生」&lt;/h3&gt;
+&lt;p&gt;日誌是在特定時間發生的離散事件的帶時間戳、不可變的記錄。日誌提供了關於應用程式或系統內部發生什麼的最詳細、最細緻的上下文。例如：系統錯誤訊息或異常事件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;它們能回答的問題：&lt;/strong&gt;「為什麼這個特定請求失敗了？」、「確切的錯誤訊息是什麼？」、「導致這次崩潰的事件順序是什麼？」&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;典型工具：&lt;/strong&gt; &lt;strong&gt;Grafana Loki&lt;/strong&gt; 是一個日誌聚合系統，設計目標是成本效益高且易於操作，特別是與 Prometheus 等其他工具整合時。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-追蹤-traces在哪裡發生&#34;&gt;3. 追蹤 (Traces)：「在哪裡發生」&lt;/h3&gt;
+&lt;p&gt;追蹤代表單一請求在分散式系統中穿越所有不同服務的端到端旅程。Span 追蹤請求發出的特定操作，描繪出在該操作執行期間發生了什麼。&lt;/p&gt;
+&lt;p&gt;例如：在 iThome 使用 Facebook 的 SSO（單一登入），一個單純的登入「請求」，可能就橫跨了 iThome 的後端服務、Facebook 的 SSO 後端、iThome 的 Redis，這些衍生出來的請求，與最初的登入請求結合起來呈現的歷程就稱為 Trace&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;它們能回答的問題：&lt;/strong&gt;「這個使用者請求的延遲在哪裡？」、「哪個下游服務造成了瓶頸？」、「這個 API 呼叫通過我們微服務的完整路徑是什麼？」&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>我的中文文章</title>
+      <link>https://nikeasyanzi.github.io/tw/chinese-post/</link>
+      <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/chinese-post/</guid>
+      <description>&lt;p&gt;這是中文內容。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 Grafana Loki 和 Alloy 收集系統日誌</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/system-log-collection-with-grafana-loki-and-alloy/</link>
+      <pubDate>Sat, 18 Oct 2025 23:33:17 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/system-log-collection-with-grafana-loki-and-alloy/</guid>
+      <description>&lt;h1 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h1&gt;
+&lt;p&gt;在本文中，我們將展示如何使用 &lt;a href=&#34;https://github.com/grafana/alloy&#34;&gt;Alloy&lt;/a&gt; 和 &lt;a href=&#34;https://github.com/grafana/loki&#34;&gt;Loki&lt;/a&gt; 有效地收集日誌。
+透過這種方式，來自應用程式和基礎設施的遙測訊號會被匯出到統一的位置，以便未來進行遙測分析。&lt;/p&gt;
+&lt;p&gt;在實驗練習中，我們將嘗試設置 Nginx 服務，搭配 Loki、Alloy，並在 Grafana 上觀察系統日誌。&lt;/p&gt;
+&lt;h1 id=&#34;配置深入探討-configuration-deep-dive&#34;&gt;配置深入探討 (Configuration deep dive)&lt;/h1&gt;
+&lt;h2 id=&#34;grafana-alloy-配置&#34;&gt;Grafana Alloy 配置&lt;/h2&gt;
+&lt;p&gt;我們使用配置檔案 &lt;code&gt;config.alloy&lt;/code&gt;，其中包含要收集的日誌以及要轉發到哪裡。&lt;/p&gt;
+&lt;h2 id=&#34;loki-配置&#34;&gt;Loki 配置&lt;/h2&gt;
+&lt;p&gt;Grafana Loki 需要一個配置檔案來定義其運行方式。在 loki-fundamentals 目錄中，你會找到一個名為 &lt;em&gt;loki-config.yaml&lt;/em&gt; 的檔案。&lt;/p&gt;
+&lt;h2 id=&#34;grafana-loki-資料來源&#34;&gt;Grafana Loki 資料來源&lt;/h2&gt;
+&lt;p&gt;Grafana 使用此配置來連接 Loki 並查詢日誌。Grafana 有多種方式定義資料來源：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Direct（直接）：在 Grafana UI 中定義資料來源。&lt;/li&gt;
+&lt;li&gt;Provisioning（佈建）：在配置檔案中定義資料來源，讓 Grafana 自動建立資料來源。&lt;/li&gt;
+&lt;li&gt;API：使用 Grafana API 建立資料來源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在接下來的實驗部分，我們使用佈建方法。我們已在 docker-compose.yml 檔案的這部分定義了資料來源：&lt;/p&gt;
+&lt;h1 id=&#34;實驗練習-lab-exercise&#34;&gt;實驗練習 (Lab exercise)&lt;/h1&gt;
+&lt;p&gt;完整的配置和 docker-compose 檔案可以在&lt;a href=&#34;https://github.com/nikeasyanzi/loki-alloy-Grafana&#34;&gt;這裡&lt;/a&gt;找到。
+在這個儲存庫中：
+&lt;em&gt;config.alloy&lt;/em&gt; 是 Alloy 的配置檔案。
+&lt;em&gt;loki-config.yam&lt;/em&gt; 是 Loki 的配置檔案。
+grafana-dashboard.json
+grafana-datasources.yml 定義了 Grafana 的資料來源
+grafana-default.yaml
+grafana-data 是 Grafana 資料庫的資料夾&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 cAdvisor 進行容器監控</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/container-monitoring-with-cadvisor/</link>
+      <pubDate>Sat, 11 Oct 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/container-monitoring-with-cadvisor/</guid>
+      <description>&lt;h1 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h1&gt;
+&lt;p&gt;現今在微服務架構中，工程師會架設多個容器來提供服務，容器監控成為熱門議題。在本文中，我們使用 &lt;a href=&#34;https://github.com/google/cadvisor&#34;&gt;cAdvisor&lt;/a&gt; 來監控主機上所有運行的容器，並使用 Grafana 視覺化資料。&lt;/p&gt;
+&lt;h1 id=&#34;設定-setup&#34;&gt;設定 (Setup)&lt;/h1&gt;
+&lt;p&gt;本實驗的腳本
+&lt;a href=&#34;https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker&#34;&gt;https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;以下是 docker compose 檔案中 cadvisor 的配置。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;cadvisor&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;cadvisor&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gcr.io/cadvisor/cadvisor:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;privileged&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/:/rootfs:ro&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/var/run:/var/run:rw&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/var/lib/docker/:/var/lib/docker&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/sys:/sys:ro&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/dev/disk/:/dev/disk&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;devices&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/dev/kmsg&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#  for kernel message&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所有容器啟動並運行後，
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/d072x3l.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我們透過連結 &lt;a href=&#34;http://localhost:8080/containers/&#34;&gt;http://localhost:8080/containers/&lt;/a&gt; 檢查 cAdvisor。
+我們可以看到所有運行中的容器清單&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/tLmdWTM.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;另外，向下捲動頁面，我們可以看到每個容器運行時的 CPU 和記憶體使用情況。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/nTzL1Do.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然後我們前往 Grafana，&lt;a href=&#34;http://localhost:3000&#34;&gt;http://localhost:3000&lt;/a&gt;
+我們新增一個儀表板來視覺化容器的資料。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用於 cadvisor：&lt;a href=&#34;https://grafana.com/grafana/dashboards/13946&#34;&gt;https://grafana.com/grafana/dashboards/13946&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/hoyOB6h.png&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;為了實驗目的，我們使用 k6 壓力測試來產生流量，並觀察流量是否反映在我們的系統上。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/IBNiAJE.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;切換到儀表板並在底部，我們可以看到 RX/TX 流量進來。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/4WkcDFI.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;結論-conclusion&#34;&gt;結論 (Conclusion)&lt;/h1&gt;
+&lt;p&gt;我們成功建立了容器監控系統。包括 1. 設置 cAdvisor 來監控容器指標 2. 整合 cAdvisor 與 Grafana 進行視覺化&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 Prometheus 和 Grafana 進行視覺化監控</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/visualized-monitoring-with-prometheus-grafana/</link>
+      <pubDate>Fri, 05 Sep 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/visualized-monitoring-with-prometheus-grafana/</guid>
+      <description>&lt;h1 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h1&gt;
+&lt;p&gt;在本文中，我們將展示&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如何使用 Prometheus 來收集和監控我們的主機與 Nginx 服務。&lt;/li&gt;
+&lt;li&gt;在 Grafana 中視覺化呈現收集到的指標&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;元件-components&#34;&gt;元件 (Components)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Prometheus&lt;/strong&gt; 收集並儲存時間序列資料形式的指標，亦即指標資訊會與記錄時的時間戳記一起儲存，以及稱為標籤的選用鍵值對。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prometheus node exporter&lt;/strong&gt; 公開各種與硬體和核心相關的指標。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grafana&lt;/strong&gt; 一種圖形化處理軟體，可支援不同型式的來源資料數據，並以豐富的圖形來呈現相關數據&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;配置-configuration&#34;&gt;配置 (Configuration)&lt;/h1&gt;
+&lt;h2 id=&#34;更新-docker-compose&#34;&gt;更新 docker-compose&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;nginx&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./nginx/:/etc/nginx/conf.d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;8082&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;nginx-prometheus-exporter&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx/nginx-prometheus-exporter:1.4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx-prometheus-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: -&lt;span style=&#34;color:#ae81ff&#34;&gt;nginx.scrape-uri http://nginx:8080/stub_status&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;9113&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;9113&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# System monitoring&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;node-exporter&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;node-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;prom/node-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;9100&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;9100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;prometheus&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;prom/prometheus:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;prometheus&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./prometheus.yaml:/etc/prometheus/prometheus.yaml&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./prometheus_data:/prometheus&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;--config.file=/etc/prometheus/prometheus.yaml&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;9090:9090&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;node-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx-prometheus-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;#handles rendering panels &amp;amp; dashboards to PNGs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;renderer&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;grafana/grafana-image-renderer:3.4.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;BROWSER_TZ&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Asia/Taipei&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8081:8081&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;grafana&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;grafana/grafana:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;grafana&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./grafana_data:/var/lib/grafana&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_SECURITY_ADMIN_PASSWORD&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;pass&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_RENDERING_SERVER_URL&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;http://renderer:8081/render&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_RENDERING_CALLBACK_URL&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;http://grafana:3000/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_LOG_FILTERS&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;rendering:debug&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;prometheus&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3000:3000&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;更新-prometheusyaml&#34;&gt;更新 prometheus.yaml&lt;/h2&gt;
+&lt;p&gt;配置 Prometheus 抓取間隔&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Self hosting local n8n service</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/self-hosting-n8n-with-docker/</link>
+      <pubDate>Thu, 04 Sep 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/self-hosting-n8n-with-docker/</guid>
+      <description>&lt;h1 id=&#34;steps&#34;&gt;Steps&lt;/h1&gt;
+&lt;h2 id=&#34;1-創建-docker-compose-檔案&#34;&gt;1. 創建 Docker Compose 檔案&lt;/h2&gt;
+&lt;p&gt;首先，建立一個專案目錄用來存放 n8n 的相關檔案。在終端機中執行以下命令：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;mkdir n8n-dockercd n8n-docker
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在專案目錄中創建一個 &lt;code&gt;docker-compose.yml&lt;/code&gt; 檔案，用來定義 n8n 和 PostgreSQL 的 Docker 容器。&lt;/p&gt;
+&lt;p&gt;docker-compose.yml&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;n8n&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;n8nio/n8n:nightly&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;5678:5678&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_TYPE=postgresdb&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_HOST=postgres&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_DATABASE=${POSTGRES_DB}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_USER=${POSTGRES_USER}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./n8n_storage:/home/node/.n8n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;postgres&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;postgres&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;postgres:13.22-alpine3.22&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;POSTGRES_USER=${POSTGRES_USER}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;POSTGRES_PASSWORD=${POSTGRES_PASSWORD}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;POSTGRES_DB=${POSTGRES_DB}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./postgres_storage:/var/lib/postgresql/data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;n8n_storage&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;postgres_storage&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;說明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 n8n 的 Docker 映像檔，並將容器的 &lt;code&gt;5678&lt;/code&gt; 埠映射到主機的 &lt;code&gt;5678&lt;/code&gt; 埠。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;postgres&lt;/code&gt; 服務：使用 PostgreSQL 的 Docker 映像檔，並設定用戶名、密碼和資料庫名稱(放在 &lt;code&gt;.env&lt;/code&gt; 檔案中)。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;volumes&lt;/code&gt;：分別用來保存 n8n 和 PostgreSQL 的資料。&lt;/li&gt;
+&lt;li&gt;GENERIC_TIMEZONE 和 TZ 環境變數：設定時區為台北時區。&lt;/li&gt;
+&lt;li&gt;相關設定可以參考 &lt;a href=&#34;https://docs.n8n.io/hosting/installation/docker&#34;&gt;n8n 官方文件&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-創建env檔案&#34;&gt;2. 創建 &lt;code&gt;.env&lt;/code&gt; 檔案&lt;/h2&gt;
+&lt;p&gt;在專案目錄中創建一個 &lt;code&gt;.env&lt;/code&gt; 檔案，用來設定 PostgreSQL 的用戶名、密碼和資料庫名稱。
+根據 &lt;a href=&#34;https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/&#34;&gt;docker official document&lt;/a&gt;, the &lt;strong&gt;.env&lt;/strong&gt; will be treated as env variable file&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 Ollama 和 Open WebUI 在一分鐘內自架本地 AI</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/self-hosting-chatgpt-in-a-minute/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/self-hosting-chatgpt-in-a-minute/</guid>
+      <description>&lt;h1 id=&#34;簡介-intro&#34;&gt;簡介 (Intro)&lt;/h1&gt;
+&lt;p&gt;透過 &lt;a href=&#34;https://ollama.com/&#34;&gt;ollama&lt;/a&gt; 和 &lt;a href=&#34;https://github.com/open-webui/open-webui&#34;&gt;Open WebUI&lt;/a&gt;，自架類似 ChatGPT 的服務已成為可能。對於關注與 AI 服務供應商分享資料問題的個人或企業來說，這絕對是個好消息。
+在本文中，我將展示如何在本地環境中設置此服務。&lt;/p&gt;
+&lt;h1 id=&#34;步驟-steps&#34;&gt;步驟 (Steps)&lt;/h1&gt;
+&lt;p&gt;首先，我們需要設置 2 個服務，並將這些服務架設在容器上。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;拉取 &lt;a href=&#34;https://hub.docker.com/r/ollama/ollama&#34;&gt;ollama container image&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker pull ollama/ollama:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;在執行服務之前，我們需要從 &lt;a href=&#34;https://ollama.com/models&#34;&gt;ollama model&lt;/a&gt; 下載模型。作為實驗，我們選擇 llama3.2。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/iwluBge.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/lnBbjDQ.png&#34;&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker exec 5eeaf ollama pull llama3.2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;這裡我選擇了 llama3.2 模型。下載需要一些時間，取決於網路速度和所選模型的大小。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/DfxrHZv.png&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;執行 ollama 服務&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker run -d -v $(PWD):/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;拉取 Open Web UI 映像檔&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker pull ghcr.io/open-webui/open-webui:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;我們建立一個名為 open-webui 的資料夾。現在，目錄結構如下所示。
+我們可以看到已下載的 llama3.2 模型以及新建立的 open-webui 資料夾，用於存放 Open Web UI 資料。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/OBRCjpR.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UV：Python 套件管理工具</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/uv/</link>
+      <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/uv/</guid>
+      <description>&lt;p&gt;管理 Python 套件一直是個令人頭痛的問題。但當我遇到 &lt;a href=&#34;https://github.com/astral-sh/uv&#34;&gt;UV&lt;/a&gt; 後，我覺得自己得救了。&lt;/p&gt;
+&lt;h2 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h2&gt;
+&lt;p&gt;Python 套件管理問題主要有兩個考量：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Python 版本：不同專案可能需要不同的 Python 直譯器。沒有人想把它們與系統預設的 Python 直譯器混在一起。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;專案所需的套件／函式庫：直覺上，不同專案有不同的函式庫相依性。即使它們都依賴像 OpenSSL 這樣的熱門函式庫，也可能依賴不同的函式庫版本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有些工具嘗試解決這個問題。
+例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.python.org/3/library/venv.html&#34;&gt;venv&lt;/a&gt; 和 &lt;a href=&#34;https://github.com/pypa/pip&#34;&gt;pip&lt;/a&gt; 提供套件管理，但無法在不同 Python 版本之間切換。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/pyenv/pyenv&#34;&gt;Pyenv&lt;/a&gt; 解決了 Python 版本切換問題，但不支援套件管理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/astral-sh/uv&#34;&gt;UV&lt;/a&gt; 的開發目標就是解決上述問題。&lt;/p&gt;
+&lt;p&gt;在這裡，我將逐步介紹如何使用 &lt;strong&gt;uv&lt;/strong&gt; 來管理你的專案。&lt;/p&gt;
+&lt;h2 id=&#34;實作演練-walkthrough&#34;&gt;實作演練 (Walkthrough)&lt;/h2&gt;
+&lt;h4 id=&#34;安裝-installation&#34;&gt;安裝 (Installation)&lt;/h4&gt;
+&lt;p&gt;對於 macOS 和 Linux，我會使用&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -LsSf https://astral.sh/uv/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;or through &lt;strong&gt;brew&lt;/strong&gt; for macOS&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;brew install uv
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;important-files&#34;&gt;Important files&lt;/h4&gt;
+&lt;p&gt;The are some key files for UV to manage the project dependency.
+In addition, the good news is UV automatically generates and updates these files. Let&amp;rsquo;s take a quick look.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Markdown Syntax Guide</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/markdown-syntax/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/markdown-syntax/</guid>
+      <description>Sample article showcasing basic Markdown syntax and formatting for HTML elements.</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>https://nikeasyanzi.github.io/tw/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/about/</guid>
+      <description>&lt;p&gt;I am a software engineer from Taiwan. Mainly focus on Linux, and Self hosting.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

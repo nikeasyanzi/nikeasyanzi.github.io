@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/en/tags/python/</link>
+    <description>Recent content in Python on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>en</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Tue, 01 Jul 2025 22:40:45 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/en/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UV: A Python Package Management Tool</title>
+      <link>https://nikeasyanzi.github.io/en/posts/uv/</link>
+      <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/en/posts/uv/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s been a headache to manage Python packages. But I feel I am saved from that when I meet &lt;a href=&#34;https://github.com/astral-sh/uv&#34;&gt;UV&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;There are two main concerns related to the Python package management problem.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Python version: Different projects may need different Python interpreters. No one wants to mix them with the system default Python interpreters.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The packages/libraries needed by the project: Intuitively, different projects have different library dependencies. Even if they all rely on a popular library such as OpenSSL, they may depend on different library versions.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

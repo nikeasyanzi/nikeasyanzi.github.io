@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/tw/tags/</link>
+    <description>Recent content in Tags on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Fri, 23 Jan 2026 16:43:38 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/tw/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Observability</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/observability/</link>
+      <pubDate>Fri, 23 Jan 2026 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/observability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/hugo/</link>
+      <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/hugo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>多語系</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/%E5%A4%9A%E8%AA%9E%E7%B3%BB/</link>
+      <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/%E5%A4%9A%E8%AA%9E%E7%B3%BB/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Observibility</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/observibility/</link>
+      <pubDate>Sat, 18 Oct 2025 23:33:17 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/observibility/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>N8n</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/n8n/</link>
+      <pubDate>Thu, 04 Sep 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/n8n/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Self-Hosting</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/self-hosting/</link>
+      <pubDate>Thu, 04 Sep 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/self-hosting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ollama</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/ollama/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/ollama/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OpenWebUI</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/openwebui/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/openwebui/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/python/</link>
+      <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>UV</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/uv/</link>
+      <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/uv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Example</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/example/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/example/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Markdown</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/markdown/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/markdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Syntax</title>
+      <link>https://nikeasyanzi.github.io/tw/tags/syntax/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/tags/syntax/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>OpenWebUI on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/en/tags/openwebui/</link>
+    <description>Recent content in OpenWebUI on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>en</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Tue, 22 Jul 2025 16:10:56 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/en/tags/openwebui/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self hosting a local AI in a minute with Ollama and Open WebUI</title>
+      <link>https://nikeasyanzi.github.io/en/posts/self-hosting-chatgpt-in-a-minute/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/en/posts/self-hosting-chatgpt-in-a-minute/</guid>
+      <description>&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;With &lt;a href=&#34;https://ollama.com/&#34;&gt;ollama&lt;/a&gt; and &lt;a href=&#34;https://github.com/open-webui/open-webui&#34;&gt;Open WebUI&lt;/a&gt;, self-hosting a chatgpt like service is possible. It&amp;rsquo;s definitely a great news for people or corporations concerning about sharing their data with AI service providers.
+In this article, I will show you how to setup a service in local environment.&lt;/p&gt;
+&lt;h1 id=&#34;steps&#34;&gt;Steps&lt;/h1&gt;
+&lt;p&gt;First of all, there are 2 services we need to setup, and we will host the service on container.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pull &lt;a href=&#34;https://hub.docker.com/r/ollama/ollama&#34;&gt;ollama container image&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker pull ollama/ollama:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Before we run the service, we need to download a model from &lt;a href=&#34;https://ollama.com/models&#34;&gt;ollama model&lt;/a&gt;. For experiment, we select llama3.2.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/iwluBge.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

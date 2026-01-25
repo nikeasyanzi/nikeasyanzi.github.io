@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Observibility on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/tw/tags/observibility/</link>
+    <description>Recent content in Observibility on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Sat, 18 Oct 2025 23:33:17 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/tw/tags/observibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Grafana Loki 和 Alloy 收集系統日誌</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/system-log-collection-with-grafana-loki-and-alloy/</link>
+      <pubDate>Sat, 18 Oct 2025 23:33:17 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/system-log-collection-with-grafana-loki-and-alloy/</guid>
+      <description>&lt;h1 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h1&gt;
+&lt;p&gt;在本文中，我們將展示如何使用 &lt;a href=&#34;https://github.com/grafana/alloy&#34;&gt;Alloy&lt;/a&gt; 和 &lt;a href=&#34;https://github.com/grafana/loki&#34;&gt;Loki&lt;/a&gt; 有效地收集日誌。
+透過這種方式，來自應用程式和基礎設施的遙測訊號會被匯出到統一的位置，以便未來進行遙測分析。&lt;/p&gt;
+&lt;p&gt;在實驗練習中，我們將嘗試設置 Nginx 服務，搭配 Loki、Alloy，並在 Grafana 上觀察系統日誌。&lt;/p&gt;
+&lt;h1 id=&#34;配置深入探討-configuration-deep-dive&#34;&gt;配置深入探討 (Configuration deep dive)&lt;/h1&gt;
+&lt;h2 id=&#34;grafana-alloy-配置&#34;&gt;Grafana Alloy 配置&lt;/h2&gt;
+&lt;p&gt;我們使用配置檔案 &lt;code&gt;config.alloy&lt;/code&gt;，其中包含要收集的日誌以及要轉發到哪裡。&lt;/p&gt;
+&lt;h2 id=&#34;loki-配置&#34;&gt;Loki 配置&lt;/h2&gt;
+&lt;p&gt;Grafana Loki 需要一個配置檔案來定義其運行方式。在 loki-fundamentals 目錄中，你會找到一個名為 &lt;em&gt;loki-config.yaml&lt;/em&gt; 的檔案。&lt;/p&gt;
+&lt;h2 id=&#34;grafana-loki-資料來源&#34;&gt;Grafana Loki 資料來源&lt;/h2&gt;
+&lt;p&gt;Grafana 使用此配置來連接 Loki 並查詢日誌。Grafana 有多種方式定義資料來源：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Direct（直接）：在 Grafana UI 中定義資料來源。&lt;/li&gt;
+&lt;li&gt;Provisioning（佈建）：在配置檔案中定義資料來源，讓 Grafana 自動建立資料來源。&lt;/li&gt;
+&lt;li&gt;API：使用 Grafana API 建立資料來源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在接下來的實驗部分，我們使用佈建方法。我們已在 docker-compose.yml 檔案的這部分定義了資料來源：&lt;/p&gt;
+&lt;h1 id=&#34;實驗練習-lab-exercise&#34;&gt;實驗練習 (Lab exercise)&lt;/h1&gt;
+&lt;p&gt;完整的配置和 docker-compose 檔案可以在&lt;a href=&#34;https://github.com/nikeasyanzi/loki-alloy-Grafana&#34;&gt;這裡&lt;/a&gt;找到。
+在這個儲存庫中：
+&lt;em&gt;config.alloy&lt;/em&gt; 是 Alloy 的配置檔案。
+&lt;em&gt;loki-config.yam&lt;/em&gt; 是 Loki 的配置檔案。
+grafana-dashboard.json
+grafana-datasources.yml 定義了 Grafana 的資料來源
+grafana-default.yaml
+grafana-data 是 Grafana 資料庫的資料夾&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 cAdvisor 進行容器監控</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/container-monitoring-with-cadvisor/</link>
+      <pubDate>Sat, 11 Oct 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/container-monitoring-with-cadvisor/</guid>
+      <description>&lt;h1 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h1&gt;
+&lt;p&gt;現今在微服務架構中，工程師會架設多個容器來提供服務，容器監控成為熱門議題。在本文中，我們使用 &lt;a href=&#34;https://github.com/google/cadvisor&#34;&gt;cAdvisor&lt;/a&gt; 來監控主機上所有運行的容器，並使用 Grafana 視覺化資料。&lt;/p&gt;
+&lt;h1 id=&#34;設定-setup&#34;&gt;設定 (Setup)&lt;/h1&gt;
+&lt;p&gt;本實驗的腳本
+&lt;a href=&#34;https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker&#34;&gt;https://github.com/nikeasyanzi/Prometheus-Grafana-Cadvisor-Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;以下是 docker compose 檔案中 cadvisor 的配置。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;cadvisor&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;cadvisor&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gcr.io/cadvisor/cadvisor:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;privileged&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/:/rootfs:ro&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/var/run:/var/run:rw&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/var/lib/docker/:/var/lib/docker&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/sys:/sys:ro&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/dev/disk/:/dev/disk&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;devices&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/dev/kmsg&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#  for kernel message&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所有容器啟動並運行後，
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/d072x3l.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我們透過連結 &lt;a href=&#34;http://localhost:8080/containers/&#34;&gt;http://localhost:8080/containers/&lt;/a&gt; 檢查 cAdvisor。
+我們可以看到所有運行中的容器清單&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/tLmdWTM.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;另外，向下捲動頁面，我們可以看到每個容器運行時的 CPU 和記憶體使用情況。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/nTzL1Do.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然後我們前往 Grafana，&lt;a href=&#34;http://localhost:3000&#34;&gt;http://localhost:3000&lt;/a&gt;
+我們新增一個儀表板來視覺化容器的資料。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用於 cadvisor：&lt;a href=&#34;https://grafana.com/grafana/dashboards/13946&#34;&gt;https://grafana.com/grafana/dashboards/13946&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/hoyOB6h.png&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;為了實驗目的，我們使用 k6 壓力測試來產生流量，並觀察流量是否反映在我們的系統上。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/IBNiAJE.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;切換到儀表板並在底部，我們可以看到 RX/TX 流量進來。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/4WkcDFI.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;結論-conclusion&#34;&gt;結論 (Conclusion)&lt;/h1&gt;
+&lt;p&gt;我們成功建立了容器監控系統。包括 1. 設置 cAdvisor 來監控容器指標 2. 整合 cAdvisor 與 Grafana 進行視覺化&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 Prometheus 和 Grafana 進行視覺化監控</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/visualized-monitoring-with-prometheus-grafana/</link>
+      <pubDate>Fri, 05 Sep 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/visualized-monitoring-with-prometheus-grafana/</guid>
+      <description>&lt;h1 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h1&gt;
+&lt;p&gt;在本文中，我們將展示&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如何使用 Prometheus 來收集和監控我們的主機與 Nginx 服務。&lt;/li&gt;
+&lt;li&gt;在 Grafana 中視覺化呈現收集到的指標&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;元件-components&#34;&gt;元件 (Components)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Prometheus&lt;/strong&gt; 收集並儲存時間序列資料形式的指標，亦即指標資訊會與記錄時的時間戳記一起儲存，以及稱為標籤的選用鍵值對。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prometheus node exporter&lt;/strong&gt; 公開各種與硬體和核心相關的指標。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grafana&lt;/strong&gt; 一種圖形化處理軟體，可支援不同型式的來源資料數據，並以豐富的圖形來呈現相關數據&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;配置-configuration&#34;&gt;配置 (Configuration)&lt;/h1&gt;
+&lt;h2 id=&#34;更新-docker-compose&#34;&gt;更新 docker-compose&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;nginx&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./nginx/:/etc/nginx/conf.d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;8082&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;nginx-prometheus-exporter&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx/nginx-prometheus-exporter:1.4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx-prometheus-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: -&lt;span style=&#34;color:#ae81ff&#34;&gt;nginx.scrape-uri http://nginx:8080/stub_status&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;9113&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;9113&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# System monitoring&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;node-exporter&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;node-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;prom/node-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;9100&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;9100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;prometheus&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;prom/prometheus:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;prometheus&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./prometheus.yaml:/etc/prometheus/prometheus.yaml&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./prometheus_data:/prometheus&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;--config.file=/etc/prometheus/prometheus.yaml&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;9090:9090&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;node-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx-prometheus-exporter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;#handles rendering panels &amp;amp; dashboards to PNGs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;renderer&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;grafana/grafana-image-renderer:3.4.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;BROWSER_TZ&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Asia/Taipei&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8081:8081&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;grafana&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;grafana/grafana:latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;grafana&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./grafana_data:/var/lib/grafana&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_SECURITY_ADMIN_PASSWORD&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;pass&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_RENDERING_SERVER_URL&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;http://renderer:8081/render&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_RENDERING_CALLBACK_URL&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;http://grafana:3000/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;GF_LOG_FILTERS&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;rendering:debug&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;prometheus&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3000:3000&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;更新-prometheusyaml&#34;&gt;更新 prometheus.yaml&lt;/h2&gt;
+&lt;p&gt;配置 Prometheus 抓取間隔&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

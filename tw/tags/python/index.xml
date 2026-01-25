@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/tw/tags/python/</link>
+    <description>Recent content in Python on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Tue, 01 Jul 2025 22:40:45 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/tw/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UV：Python 套件管理工具</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/uv/</link>
+      <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/uv/</guid>
+      <description>&lt;p&gt;管理 Python 套件一直是個令人頭痛的問題。但當我遇到 &lt;a href=&#34;https://github.com/astral-sh/uv&#34;&gt;UV&lt;/a&gt; 後，我覺得自己得救了。&lt;/p&gt;
+&lt;h2 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h2&gt;
+&lt;p&gt;Python 套件管理問題主要有兩個考量：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Python 版本：不同專案可能需要不同的 Python 直譯器。沒有人想把它們與系統預設的 Python 直譯器混在一起。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;專案所需的套件／函式庫：直覺上，不同專案有不同的函式庫相依性。即使它們都依賴像 OpenSSL 這樣的熱門函式庫，也可能依賴不同的函式庫版本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有些工具嘗試解決這個問題。
+例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.python.org/3/library/venv.html&#34;&gt;venv&lt;/a&gt; 和 &lt;a href=&#34;https://github.com/pypa/pip&#34;&gt;pip&lt;/a&gt; 提供套件管理，但無法在不同 Python 版本之間切換。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/pyenv/pyenv&#34;&gt;Pyenv&lt;/a&gt; 解決了 Python 版本切換問題，但不支援套件管理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/astral-sh/uv&#34;&gt;UV&lt;/a&gt; 的開發目標就是解決上述問題。&lt;/p&gt;
+&lt;p&gt;在這裡，我將逐步介紹如何使用 &lt;strong&gt;uv&lt;/strong&gt; 來管理你的專案。&lt;/p&gt;
+&lt;h2 id=&#34;實作演練-walkthrough&#34;&gt;實作演練 (Walkthrough)&lt;/h2&gt;
+&lt;h4 id=&#34;安裝-installation&#34;&gt;安裝 (Installation)&lt;/h4&gt;
+&lt;p&gt;對於 macOS 和 Linux，我會使用&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -LsSf https://astral.sh/uv/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;or through &lt;strong&gt;brew&lt;/strong&gt; for macOS&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;brew install uv
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;important-files&#34;&gt;Important files&lt;/h4&gt;
+&lt;p&gt;The are some key files for UV to manage the project dependency.
+In addition, the good news is UV automatically generates and updates these files. Let&amp;rsquo;s take a quick look.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

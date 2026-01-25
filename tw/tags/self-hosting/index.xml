@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Self-Hosting on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/tw/tags/self-hosting/</link>
+    <description>Recent content in Self-Hosting on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Thu, 04 Sep 2025 16:10:56 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/tw/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self hosting local n8n service</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/self-hosting-n8n-with-docker/</link>
+      <pubDate>Thu, 04 Sep 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/self-hosting-n8n-with-docker/</guid>
+      <description>&lt;h1 id=&#34;steps&#34;&gt;Steps&lt;/h1&gt;
+&lt;h2 id=&#34;1-創建-docker-compose-檔案&#34;&gt;1. 創建 Docker Compose 檔案&lt;/h2&gt;
+&lt;p&gt;首先，建立一個專案目錄用來存放 n8n 的相關檔案。在終端機中執行以下命令：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;mkdir n8n-dockercd n8n-docker
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在專案目錄中創建一個 &lt;code&gt;docker-compose.yml&lt;/code&gt; 檔案，用來定義 n8n 和 PostgreSQL 的 Docker 容器。&lt;/p&gt;
+&lt;p&gt;docker-compose.yml&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;n8n&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;n8nio/n8n:nightly&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;5678:5678&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_TYPE=postgresdb&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_HOST=postgres&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_DATABASE=${POSTGRES_DB}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_USER=${POSTGRES_USER}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./n8n_storage:/home/node/.n8n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;postgres&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;postgres&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;postgres:13.22-alpine3.22&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;POSTGRES_USER=${POSTGRES_USER}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;POSTGRES_PASSWORD=${POSTGRES_PASSWORD}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;POSTGRES_DB=${POSTGRES_DB}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./postgres_storage:/var/lib/postgresql/data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;n8n_storage&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;postgres_storage&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;說明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 n8n 的 Docker 映像檔，並將容器的 &lt;code&gt;5678&lt;/code&gt; 埠映射到主機的 &lt;code&gt;5678&lt;/code&gt; 埠。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;postgres&lt;/code&gt; 服務：使用 PostgreSQL 的 Docker 映像檔，並設定用戶名、密碼和資料庫名稱(放在 &lt;code&gt;.env&lt;/code&gt; 檔案中)。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;volumes&lt;/code&gt;：分別用來保存 n8n 和 PostgreSQL 的資料。&lt;/li&gt;
+&lt;li&gt;GENERIC_TIMEZONE 和 TZ 環境變數：設定時區為台北時區。&lt;/li&gt;
+&lt;li&gt;相關設定可以參考 &lt;a href=&#34;https://docs.n8n.io/hosting/installation/docker&#34;&gt;n8n 官方文件&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-創建env檔案&#34;&gt;2. 創建 &lt;code&gt;.env&lt;/code&gt; 檔案&lt;/h2&gt;
+&lt;p&gt;在專案目錄中創建一個 &lt;code&gt;.env&lt;/code&gt; 檔案，用來設定 PostgreSQL 的用戶名、密碼和資料庫名稱。
+根據 &lt;a href=&#34;https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/&#34;&gt;docker official document&lt;/a&gt;, the &lt;strong&gt;.env&lt;/strong&gt; will be treated as env variable file&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 Ollama 和 Open WebUI 在一分鐘內自架本地 AI</title>
+      <link>https://nikeasyanzi.github.io/tw/posts/self-hosting-chatgpt-in-a-minute/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/tw/posts/self-hosting-chatgpt-in-a-minute/</guid>
+      <description>&lt;h1 id=&#34;簡介-intro&#34;&gt;簡介 (Intro)&lt;/h1&gt;
+&lt;p&gt;透過 &lt;a href=&#34;https://ollama.com/&#34;&gt;ollama&lt;/a&gt; 和 &lt;a href=&#34;https://github.com/open-webui/open-webui&#34;&gt;Open WebUI&lt;/a&gt;，自架類似 ChatGPT 的服務已成為可能。對於關注與 AI 服務供應商分享資料問題的個人或企業來說，這絕對是個好消息。
+在本文中，我將展示如何在本地環境中設置此服務。&lt;/p&gt;
+&lt;h1 id=&#34;步驟-steps&#34;&gt;步驟 (Steps)&lt;/h1&gt;
+&lt;p&gt;首先，我們需要設置 2 個服務，並將這些服務架設在容器上。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;拉取 &lt;a href=&#34;https://hub.docker.com/r/ollama/ollama&#34;&gt;ollama container image&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker pull ollama/ollama:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;在執行服務之前，我們需要從 &lt;a href=&#34;https://ollama.com/models&#34;&gt;ollama model&lt;/a&gt; 下載模型。作為實驗，我們選擇 llama3.2。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/iwluBge.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/lnBbjDQ.png&#34;&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker exec 5eeaf ollama pull llama3.2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;這裡我選擇了 llama3.2 模型。下載需要一些時間，取決於網路速度和所選模型的大小。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/DfxrHZv.png&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;執行 ollama 服務&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker run -d -v $(PWD):/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;拉取 Open Web UI 映像檔&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash=&#34; data-lang=&#34;bash=&#34;&gt;docker pull ghcr.io/open-webui/open-webui:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;我們建立一個名為 open-webui 的資料夾。現在，目錄結構如下所示。
+我們可以看到已下載的 llama3.2 模型以及新建立的 open-webui 資料夾，用於存放 Open Web UI 資料。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://i.imgur.com/OBRCjpR.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
