@@ -1,104 +1,28 @@
-baseURL: https://nikeasyanzi.github.io
-title: Craig Yang's Dev Blog
-languageCode: en-us
-theme: PaperModX
-languageName: English
-pagination:
-  pagerSize: 10 # 首页每页显示的文章数
-defaultTheme: dark
-hasCJKLanguage: true # 自动检测是否包含中文日文韩文,如果文章中使用了很多中文引号的话可以开启
+# If your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would
+# contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
+baseURL: "https://nikeasyanzi.github.io/"
+title: Craig Yang's Blog
+subtitle: "分享技術、生活與學習的點滴"
+author: "Craig Yang"
+copyright: "© [PaperMod Contributors](https://github.com/adityatelange/hugo-PaperMod/graphs/contributors)"
+theme: hugo-PaperMod
+disqusShortname: nikeasyanzi
+
 enableInlineShortcodes: true
-enableEmoji: true # 允许使用 Emoji 表情，建议 true
-enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
+enableEmoji: true
 pygmentsUseClasses: true
-# googleAnalytics: UA-123-45
+mainsections: ["posts", "papermod"]
 
-minify:
-  disableXML: true
-  # minifyOutput: true
-
-permalinks:
-  post: "/:title/"
-  # post: "/:year/:month/:day/:title/"
+languageCode: "en"                # Default language code
+defaultContentLanguage: "en"      # Default language for the site
+defaultContentLanguageInSubdir: true  # Put default language in its own subdirectory (/en)
 
 params:
-  description: Craig Yang's blog on Software Development, Linux, Crypto, and Selfhosting.
-  keywords:
-    - Software Developer
-    - Linux
-    - Selfhosting
-    - Programming
-    - Obsidian
-  images:
-    - 4rkal.png
-  favicon: 4rkal.png
-  
-  showtoc: true
-  tocopen: false
-  TocSide: right
-  
-  ShowReadingTime: true
-  ShowWordCount: true
-  # disableSpecialistPost: true
-  ShowShareButtons: true
-  ShowCodeCopyButtons: true
-  displayFullLangName: true
-  ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: true
-  DateFormat: "2006-01-02"
-  disableThemeToggle: false
-  defaultTheme: dark
-  hideFooter: false # 隐藏页脚
-  ShowWordCounts: true
-  VisitCount: true
-  ShowLastMod: true #显示文章更新时间
   comments: true
-  
-  #canonicalURL: "{{ .Permalink }}"
-  author: 4rkal
-  header:
-    desktopMode: fixed
-    mobileMode: auto
-  homeInfoParams:
-    Title: Hi, I'm Craig Yang
-    Content:
-      There is all about my learning note on Software Development, Linux, and Self hosting.
-      以後可能中英文混著寫吧～
-      # [<u>**linux**</u>](../../tags/linux),
-      # [<u>**privacy**</u>](../../tags/privacy),
-      # [<u>**crypto**</u>](../../tags/crypto), and
-      # [<u>**programming**</u>](../../tags/programming). I also love
-      # [<u>**selfhosting**</u>](../../tags/selfhosting) stuff.
-  socialIcons:
-    - name: github
-      url: "https://github.com/nikeasyanzi"
-    - name: linkedin
-      url: "https://www.linkedin.com/in/craig-yang-6b911784/"
-    #- name: twitter
-    #  url: https://x.com/4rkal_
-    - name: email
-      url: /about/#get-in-touch
-    - name: rss
-      url: /index.xml
-  #  logo:
-  #    icon: 4rkal.png
-  #  opengraph:
-  #    enable: true
-  #    title: "{{ .Title }}"
-  #    description: "{{ .Params.description }}"
-  #    image: "{{ .Params.images }}"
-  #  twitter:
-  #    enable: true
-  #    card: summary_large_image
-  #    title: "{{ .Title }} - 4rkal's blog"
-  #    description: "{{ .Params.description }}"
-  #    image: "{{ .Params.images }}"
-  search:
-    enabled: true
+  disqusShortname: nikeasyanzi
 
   # 添加搜索参数，参考 https://fusejs.io/api/options.html
   fuseOpts:
@@ -111,102 +35,115 @@ params:
     minMatchCharLength: 0
     keys: ["title", "permalink", "summary", "content"]
 
-  commentSystems:
-    enable: true
-    disqus:
-      shortname: nikeasyanzi
+minify:
+  disableXML: true
+  # minifyOutput: true
 
-  defaultCommentSystems:
-    disqus: true
+pagination:
+  disableAliases: false
+  pagerSize: 5
 
-  minify:
-    disableXML: true
+languages:
+  en:
+    languageName: "English"
+    languageAltTitle: "EN"       # Alternative short title
+    weight: 1                     # Lower weight = higher priority
+    contentDir: "content/en"      # Directory for English posts
+    menu:
+      main:
+        - name: About
+          url: about/
+          weight: 1
+        - name: Archive
+          url: archives
+          weight: 5
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Tags
+          url: tags/
+          weight: 10
+        - name: Posts
+          url: /en/posts/
+          weight: 10
+    params:
+      description: "English version of the blog"
+      profileMode:
+        enabled: false
+        title: PaperMod
+        imageUrl: "https://raw.githubusercontent.com/googlefonts/noto-emoji/master/svg/emoji_u1f9d1_1f3fb_200d_1f4bb.svg"
+        imageTitle: ProfileMode image
+        # imageWidth: 120
+        # imageHeight: 120
+        subtitle: "☄️ Fast | ☁️ Self-learning | 🌙 Self-hosting | 📱 Linux"
+        buttons:
+          - name: About Me
+            url: https://github.com/adityatelange/hugo-PaperMod/wiki/Features#profile-mode
+      socialIcons:
+        - name: github
+          url: 'https://github.com/nikeasyanzi/'
+        - name: linkedin
+          url: 'https://www.linkedin.com/in/craig-yang-6b911784/'
+        - name: email
+          url: 'mailto:shangjr520@gmail'
 
-menu:
-  main:
-    - identifier: posts
-      name: 📚 Posts
-      url: /posts/
-      title: Posts
-      weight: 10
-    - identifier: Search
-      name: 🔍 Search
-      url: /search/
-      title: Search the site
-      weight: 20
-    - identifier: archives
-      name: 🗂️ archives
-      url: /archives/
-      weight: 30
-    - identifier: About
-      name: 😎 About
-      url: /about/
-      title: About
-      weight: 40
-sitemap:
-  changefreq: always
-  filename: sitemap.xml
-  priority: 0.5
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
+  tw:
+    languageName: "繁體中文"
+    languageAltTitle: "TW"       # Alternative short title
+    weight: 2
+    contentDir: "content/tw"      # Directory for Chinese posts
+    menu:
+      main:
+        - name: About
+          url: about/
+          weight: 1
+        - name: Archive
+          url: archives/
+          weight: 5
+        - name: Posts
+          url: /tw/posts/
+          weight: 10
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Tags
+          url: tags/
+          weight: 10
+    params:
+      description: "中文版部落格"
+      socialIcons:
+        - name: github
+          url: 'https://github.com/nikeasyanzi/'
+        - name: linkedin
+          url: 'https://www.linkedin.com/in/craig-yang-6b911784/'
+        - name: email
+          url: 'mailto:shangjr520@gmail'
+
+# Permalinks for posts
+permalinks:
+  post: "/:year/:month/:title/"   # Customize URL structure for posts
+
+# Enable RSS, sitemap, etc.
+enableRobotsTXT: true
+#enableGitInfo: true
+
+# Taxonomies (optional)
+taxonomies:
+  category: "categories"
+  tag: "tags"
+  search: "search"
 
 outputs:
   home:
     - HTML
     - RSS
     - JSON
-  
-
-taxonomies:
-    category: categories
-    tag: tags
-    series: series
-
-markup:
-    goldmark:
-        renderer:
-            unsafe: true # HUGO 默认转义 Markdown 文件中的 HTML 代码，如需开启的话
-    highlight:
-        # anchorLineNos: true
-        codeFences: true
-        guessSyntax: true
-        lineNos: true
-        # noClasses: false
-        # style: monokai
-        style: darcula
-
-        # codeFences：代码围栏功能，这个功能一般都要设为 true 的，不然很难看，就是干巴巴的-代码文字，没有颜色。
-        # guessSyntax：猜测语法，这个功能建议设置为 true, 如果你没有设置要显示的语言则会自动匹配。
-        # hl_Lines：高亮的行号，一般这个不设置，因为每个代码块我们可能希望让高亮的地方不一样。
-        # lineNoStart：行号从编号几开始，一般从 1 开始。
-        # lineNos：是否显示行号，我比较喜欢显示，所以我设置的为 true.
-        # lineNumbersInTable：使用表来格式化行号和代码,而不是 标签。这个属性一般设置为 true.
-        # noClasses：使用 class 标签，而不是内嵌的内联样式
-
-#privacy:
-#    vimeo:
-#        disabled: false
-#        simple: true
-
-#    twitter:
-#        disabled: false
-#        enableDNT: true
-#        simple: true
-
-#    instagram:
-#        disabled: false
-#        simple: true
-#
-#    youtube:
-#        disabled: false
-#        privacyEnhanced: true
-#
-#services:
-#    instagram:
-#        disableInlineCSS: true
-#    twitter:
-#        disableInlineCSS: true
 
 
+services:
+  youtube:
+    disableInlineCSS: true
+  instagram:
+    disableInlineCSS: true
+  x:
+    disableInlineCSS: true

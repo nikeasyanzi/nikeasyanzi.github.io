@@ -2,8 +2,11 @@
 date = '2025-10-18T23:33:17+08:00'
 draft = false
 title = 'System Log Collection With Grafana Loki and Alloy'
+categories = ["Observibility"]
 tags= ["Observibility"]
-series = [""]
+series= [""]
+ShowToc = true
+TocOpen = true
 +++
 
 # Introduction
