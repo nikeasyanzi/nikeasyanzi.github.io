@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SSD on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/en/tags/ssd/</link>
+    <description>Recent content in SSD on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>en</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Thu, 05 Feb 2026 10:30:00 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/en/tags/ssd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The False Alarm Heuristic: When Software Must Absorb Hardware Noise</title>
+      <link>https://nikeasyanzi.github.io/en/posts/when-software-must-absorb-hardware-noise/</link>
+      <pubDate>Thu, 05 Feb 2026 10:30:00 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/en/posts/when-software-must-absorb-hardware-noise/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In system engineering, it’s tempting to treat “technically correct” as the finish line.&lt;/p&gt;
+&lt;p&gt;But I’ve learned the hard way that correctness can still create a bad customer experience—especially when your software is sitting between messy reality (hardware, firmware, drivers) and the person who just wants a clear signal: &lt;em&gt;Is something wrong, and do I need to act now?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This is the story of one uncomfortable moment that taught me a simple heuristic: sometimes, software has to absorb hardware noise.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
