@@ -23,6 +23,7 @@ defaultContentLanguageInSubdir: true  # Put default language in its own subdirec
 params:
   comments: true
   disqusShortname: nikeasyanzi
+  googleAnalytics: "G-JD7S8N753Z"
 
   # 添加搜索参数，参考 https://fusejs.io/api/options.html
   fuseOpts:

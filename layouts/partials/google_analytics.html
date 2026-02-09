@@ -1,0 +1,10 @@
+{{- $id := site.Params.googleAnalytics -}}
+{{- if and $id (or hugo.IsProduction (eq site.Params.env "production")) -}}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $id }}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);} 
+gtag('js', new Date());
+gtag('config', '{{ $id }}', { 'anonymize_ip': true });
+</script>
+{{- end -}}
