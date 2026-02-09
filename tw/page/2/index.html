@@ -14,7 +14,24 @@ UV 的開發目標就是解決上述問題。
 實作演練 (Walkthrough) 安裝 (Installation) 對於 macOS 和 Linux，我會使用
 curl -LsSf https://astral.sh/uv/install.sh | sh or through brew for macOS
 brew install uv Important files The are some key files for UV to manage the project dependency. In addition, the good news is UV automatically generates and updates these files. Let’s take a quick look.
-...</p></div><footer class=entry-footer><span title='2025-07-01 22:40:45 +0800 +0800'>July 1, 2025</span></footer><a class=entry-link aria-label="post link to UV：Python 套件管理工具" href=https://nikeasyanzi.github.io/tw/posts/uv/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Markdown Syntax Guide</h2></header><div class=entry-content><p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
+...</p></div><footer class=entry-footer><span title='2025-07-01 22:40:45 +0800 +0800'>July 1, 2025</span></footer><a class=entry-link aria-label="post link to UV：Python 套件管理工具" href=https://nikeasyanzi.github.io/tw/posts/uv/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>軟體介入解決硬體雜訊 (Software Intervention to Resolve Hardware Noise)</h2></header><div class=entry-content><p>簡介 (Introduction) 在系統工程中，我們很容易將「技術上正確」視為終點線。
+但我從的經驗中學到，所謂的正確性仍然可能對你的客戶造成困擾——尤其是當你的軟體介於硬體、韌體、驅動程式時
+這是一個關於務實與完美的故事。有時候，軟體必須吸收硬體雜訊去維持客户满意度。
+問題：連鎖誤報 (The Problem: A Cascade of False Alarms) 我們有一個 SSD 監控常駐程式 (daemon)，。有一天，一位客戶升級通報了一個嚴重問題：他們的機群突然大規模觸發 SSD 耗損警報。
+我的直覺反應是標準的工程師反射動作：假設 bug 是我們造成的。
+於是我逐行檢查程式碼。令人沮喪的是，程式碼看起來無懈可擊。我們完全按照設計讀取作業系統訊號並如實回報。
+接著我們發現：訊號本身就是不穩定的 (flaky)。
+在我們的 daemon 底層，特定的 SSD 韌體會在較低層級產生偽陽性 (false positives)。而我們的軟體——身為「正確」的一方正盡職地將這種狀況回報變成客戶的警報。
+這造成了一個我不喜歡但無法避免的兩難：
+實作方式是 技術上正確的，但它卻因為產生雜訊，導致 可能影響客戶的產品品質。 這位客戶是第一位回報此事件的人，所以我們沒有既定的處理守則 (playbook)。 硬體供應商的退換貨流程 (RMA process) 需要數週時間。 客戶的產品發布就在幾天之後。 解決方案：啟發式過濾器 (The Solution: A Heuristic Filter) 我們需要一個快速、安全且誠實的方案。
+所以我實作了一個 啟發式過濾器 (heuristic filter)——也就是一種防抖動 (debouncing) 機制。
+用白話文說：我們不再是一看到單一的「磨損」訊號就發出警報，而是要求訊號必須在多次讀取中（或在一個短時間窗口內）持續存在。如果訊號是暫時性的，且在下一次檢查時消失，我們就將其視為雜訊。如果它持續存在，我們才視為真實情況。
+關鍵的權衡在於延遲 (latency)。我們的 daemon 每隔幾秒檢查一次訊號，所以「確認」訊號的持續性可能會將警報延遲幾秒鐘（有時是幾分鐘，取決於時間窗口）。
+對於 SSD 健康監控來說，這種輕微的延遲是可以接受的。畢竟這不是毫秒級的緊急事件；SSD的健康是一種趨勢。在這種情境下，回報有幾秒的延遲，遠比時不時的偽陽性警報來得好。
+我與主管就溝通框架達成了一致：
+這是一個務實的修補程式，目的是為了讓客戶產品順利發布。但同時我們也必須請相關的團隊持續去推動供應商追蹤這個問題。。
+結果：解鎖與學習 (The Result: Unblocked and Learned) 最後，客戶如期發布了產品。
+...</p></div><footer class=entry-footer><span title='2025-02-05 10:30:00 +0800 +0800'>February 5, 2025</span></footer><a class=entry-link aria-label="post link to 軟體介入解決硬體雜訊 (Software Intervention to Resolve Hardware Noise)" href=https://nikeasyanzi.github.io/tw/posts/software-intervention-to-resolve-hardware-noise/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Markdown Syntax Guide</h2></header><div class=entry-content><p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
 ...</p></div><footer class=entry-footer><span title='2019-03-11 00:00:00 +0000 UTC'>March 11, 2019</span>&nbsp;·&nbsp;<span>Hugo Authors</span></footer><a class=entry-link aria-label="post link to Markdown Syntax Guide" href=https://nikeasyanzi.github.io/tw/posts/markdown-syntax/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://nikeasyanzi.github.io/tw/>«&nbsp;Prev&nbsp;</a></nav></footer></main><footer class=footer><span>© <a href=https://github.com/adityatelange/hugo-PaperMod/graphs/contributors>PaperMod Contributors</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &

@@ -221,6 +221,16 @@ In this article, I will show you how to setup a service in local environment.&lt
 &lt;p&gt;The packages/libraries needed by the project: Intuitively, different projects have different library dependencies. Even if they all rely on a popular library such as OpenSSL, they may depend on different library versions.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Software Intervention to Resolve Hardware Noise</title>
+      <link>https://nikeasyanzi.github.io/en/posts/software-intervention-to-resolve-hardware-noise/</link>
+      <pubDate>Wed, 05 Feb 2025 10:30:00 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/en/posts/software-intervention-to-resolve-hardware-noise/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In system engineering, it’s tempting to treat “technically correct” as the finish line.&lt;/p&gt;
+&lt;p&gt;But I’ve learned the hard way that correctness can still create a bad customer experience—especially when your software is sitting between messy reality (hardware, firmware, drivers) and the person who just wants a clear signal: &lt;em&gt;Is something wrong, and do I need to act now?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This is the story of one uncomfortable moment that taught me a simple heuristic: sometimes, software has to absorb hardware noise.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Markdown Syntax Guide</title>
       <link>https://nikeasyanzi.github.io/en/posts/markdown-syntax/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
