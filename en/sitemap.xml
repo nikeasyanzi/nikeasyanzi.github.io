@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nikeasyanzi.github.io/en/categories/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
+    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tw"
@@ -16,7 +16,7 @@
                 />
   </url><url>
     <loc>https://nikeasyanzi.github.io/en/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
+    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tw"
@@ -26,63 +26,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://nikeasyanzi.github.io/en/"
-                />
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/tags/customer-obsession/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/tags/debouncing/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/tags/hardware-monitoring/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/tags/pragmatic-engineering/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/categories/problem-solving/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/tags/ssd/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tw"
-                href="https://nikeasyanzi.github.io/tw/tags/ssd/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://nikeasyanzi.github.io/en/tags/ssd/"
-                />
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/categories/system-engineering/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/tags/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tw"
-                href="https://nikeasyanzi.github.io/tw/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://nikeasyanzi.github.io/en/tags/"
-                />
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/en/posts/when-software-must-absorb-hardware-noise/</loc>
-    <lastmod>2026-02-05T10:30:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tw"
-                href="https://nikeasyanzi.github.io/tw/posts/when-software-must-absorb-hardware-noise/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://nikeasyanzi.github.io/en/posts/when-software-must-absorb-hardware-noise/"
                 />
   </url><url>
     <loc>https://nikeasyanzi.github.io/en/posts/observability/</loc>
@@ -112,6 +55,19 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://nikeasyanzi.github.io/en/tags/observibility/"
+                />
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/en/tags/</loc>
+    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tw"
+                href="https://nikeasyanzi.github.io/tw/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://nikeasyanzi.github.io/en/tags/"
                 />
   </url><url>
     <loc>https://nikeasyanzi.github.io/en/search/config/</loc>
