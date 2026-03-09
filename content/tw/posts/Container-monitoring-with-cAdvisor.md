@@ -2,6 +2,7 @@
 date = '2025-10-11T16:43:38+08:00'
 draft = false
 title = '使用 cAdvisor 進行容器監控'
+description = '使用 cAdvisor 監控 Docker 容器，並透過 Prometheus 和 Grafana 視覺化容器指標資料。'
 tags= ["Observibility"]
 series= [""]
 +++

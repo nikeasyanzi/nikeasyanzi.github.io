@@ -2,6 +2,7 @@
 date = '2025-10-18T23:33:17+08:00'
 draft = false
 title = 'System Log Collection With Grafana Loki and Alloy'
+description = 'How to collect and centralize system logs using Grafana Alloy and Loki, with a hands-on lab using Nginx, Docker, and Grafana for log visualization.'
 categories = ["Observibility"]
 tags= ["Observibility"]
 series= [""]

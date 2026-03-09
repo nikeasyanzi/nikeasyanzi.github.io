@@ -2,6 +2,7 @@
 date = '2025-09-05T16:43:38+08:00'
 draft = false
 title = 'Visualized Monitoring With Prometheus and Grafana'
+description = 'Set up Prometheus to collect host and Nginx metrics, then visualize them with Grafana dashboards using Docker Compose.'
 categories = ["Observibility"]
 tags= ["Observibility"]
 series= [""]

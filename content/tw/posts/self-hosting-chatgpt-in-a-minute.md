@@ -1,7 +1,8 @@
 +++
 date = '2025-07-22T16:10:56+08:00'
-draft = 'False'
+draft = false
 title = '使用 Ollama 和 Open WebUI 在一分鐘內自架本地 AI'
+description = '使用 Ollama 和 Open WebUI 透過 Docker 容器快速自架類似 ChatGPT 的本地 AI 服務的逐步教學。'
 categories = ["self-hosting"]
 tags = ["self-hosting", "Ollama", "OpenWebUI"]
 ShowToc = true

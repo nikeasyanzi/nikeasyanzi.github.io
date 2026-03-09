@@ -1,7 +1,8 @@
 +++
 date = '2026-01-23T16:43:38+08:00'
-draft = 'False'
+draft = false
 title = '可觀測性 Observability'
+description = '介紹可觀測性的三大支柱：日誌、指標與追蹤，以及它們如何幫助你在微服務架構中除錯未知問題。'
 categories = ["Observability"]
 tags = ["Observability"]
 series= [""]

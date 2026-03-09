@@ -1,7 +1,8 @@
 +++
 date = '2025-07-01T22:40:45+08:00'
-draft = 'False'
+draft = false
 title = 'UV：Python 套件管理工具'
+description = 'UV 是一款快速的 Python 套件和版本管理工具，可取代 venv、pip 和 pyenv，本文逐步介紹如何使用。'
 categories = ["Python"]
 tags = ["Python","UV"]
 ShowToc = true

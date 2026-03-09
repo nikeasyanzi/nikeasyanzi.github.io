@@ -1,7 +1,8 @@
 +++
 date = '2025-07-01T22:40:45+08:00'
-draft = 'False'
+draft = false
 title = 'UV: A Python Package Management Tool'
+description = 'A walkthrough of UV, the fast Python package and version manager that replaces venv, pip, and pyenv in a single tool.'
 categories = ["Python"]
 tags = ["Python","UV"]
 ShowToc = true

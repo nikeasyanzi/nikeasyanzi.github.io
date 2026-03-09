@@ -2,6 +2,7 @@
 date = '2025-10-18T23:33:17+08:00'
 draft = false
 title = '使用 Grafana Loki 和 Alloy 收集系統日誌'
+description = '展示如何使用 Grafana Alloy 和 Loki 收集系統日誌，並在 Grafana 上視覺化觀察 Nginx 日誌。'
 tags= ["Observibility"]
 series = [""]
 +++

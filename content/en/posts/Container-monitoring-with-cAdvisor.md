@@ -2,6 +2,7 @@
 date = '2025-10-11T16:43:38+08:00'
 draft = false
 title = 'Container Monitoring With cAdvisor'
+description = 'Monitor Docker containers with cAdvisor and visualize container metrics in Grafana using Prometheus as the data source.'
 tags= ["Observibility"]
 series= [""]
 ShowToc = true

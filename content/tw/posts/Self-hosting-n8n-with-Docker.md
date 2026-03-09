@@ -1,7 +1,8 @@
 +++
 date = '2025-09-04T16:10:56+08:00'
-draft = 'False'
+draft = false
 title = 'Self hosting local n8n service'
+description = '使用 Docker Compose 和 PostgreSQL 自架 n8n 工作流自動化工具的完整教學。'
 categories = ["self-hosting"]
 tags = ["self-hosting", "n8n"]
 ShowToc = true

@@ -2,6 +2,7 @@
 date = '2025-09-05T16:43:38+08:00'
 draft = false
 title = '使用 Prometheus 和 Grafana 進行視覺化監控'
+description = '使用 Docker Compose 設定 Prometheus 收集主機和 Nginx 指標，並在 Grafana 儀表板中視覺化呈現。'
 tags= ["Observibility"]
 series= [""]
 +++

@@ -1,7 +1,8 @@
 +++
 date = '2026-01-23T16:43:38+08:00'
-draft = 'False'
+draft = false
 title = 'Observability'
+description = 'Learn about observability in modern systems — the three pillars of logs, metrics, and traces — and how they help you debug unknown unknowns in microservice architectures.'
 categories = ["Observibility"]
 tags= ["Observibility"]
 series= [""]
