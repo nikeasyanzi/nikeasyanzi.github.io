@@ -21,9 +21,27 @@ defaultContentLanguage: "en"      # Default language for the site
 defaultContentLanguageInSubdir: true  # Put default language in its own subdirectory (/en)
 
 params:
+  env: production
   comments: true
   disqusShortname: nikeasyanzi
   googleAnalytics: "G-JD7S8N753Z"
+
+  # SEO: Site-level keywords (rendered on the home page)
+  keywords:
+    - DevOps
+    - self-hosting
+    - observability
+    - Docker
+    - Linux
+    - Python
+    - CI/CD
+    - tech blog
+
+  # SEO: Google Search Console verification
+  # Replace YOUR_VERIFICATION_CODE with the code from Google Search Console
+  analytics:
+    google:
+      SiteVerificationTag: "YOUR_VERIFICATION_CODE"
 
   # 添加搜索参数，参考 https://fusejs.io/api/options.html
   fuseOpts:
