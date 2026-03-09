@@ -14,15 +14,7 @@
       <link>https://nikeasyanzi.github.io/en/posts/uv/</link>
       <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
       <guid>https://nikeasyanzi.github.io/en/posts/uv/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s been a headache to manage Python packages. But I feel I am saved from that when I meet &lt;a href=&#34;https://github.com/astral-sh/uv&#34;&gt;UV&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;There are two main concerns related to the Python package management problem.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Python version: Different projects may need different Python interpreters. No one wants to mix them with the system default Python interpreters.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The packages/libraries needed by the project: Intuitively, different projects have different library dependencies. Even if they all rely on a popular library such as OpenSSL, they may depend on different library versions.&lt;/p&gt;</description>
+      <description>A walkthrough of UV, the fast Python package and version manager that replaces venv, pip, and pyenv in a single tool.</description>
     </item>
   </channel>
 </rss>
