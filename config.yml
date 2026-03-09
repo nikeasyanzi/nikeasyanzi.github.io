@@ -16,9 +16,9 @@ enableEmoji: true
 pygmentsUseClasses: true
 mainsections: ["posts", "papermod"]
 
-languageCode: "en"                # Default language code
-defaultContentLanguage: "en"      # Default language for the site
-defaultContentLanguageInSubdir: true  # Put default language in its own subdirectory (/en)
+languageCode: "en" # Default language code
+defaultContentLanguage: "en" # Default language for the site
+defaultContentLanguageInSubdir: true # Put default language in its own subdirectory (/en)
 
 params:
   env: production
@@ -41,7 +41,7 @@ params:
   # Replace YOUR_VERIFICATION_CODE with the code from Google Search Console
   analytics:
     google:
-      SiteVerificationTag: "YOUR_VERIFICATION_CODE"
+      SiteVerificationTag: "9cP3nJntOeTy8CZw1obpJyKpPJWz1KWw73O5QmWZerU"
 
   # 添加搜索参数，参考 https://fusejs.io/api/options.html
   fuseOpts:
@@ -65,9 +65,9 @@ pagination:
 languages:
   en:
     languageName: "English"
-    languageAltTitle: "EN"       # Alternative short title
-    weight: 1                     # Lower weight = higher priority
-    contentDir: "content/en"      # Directory for English posts
+    languageAltTitle: "EN" # Alternative short title
+    weight: 1 # Lower weight = higher priority
+    contentDir: "content/en" # Directory for English posts
     menu:
       main:
         - name: About
@@ -100,17 +100,17 @@ languages:
             url: https://github.com/adityatelange/hugo-PaperMod/wiki/Features#profile-mode
       socialIcons:
         - name: github
-          url: 'https://github.com/nikeasyanzi/'
+          url: "https://github.com/nikeasyanzi/"
         - name: linkedin
-          url: 'https://www.linkedin.com/in/craig-yang-6b911784/'
+          url: "https://www.linkedin.com/in/craig-yang-6b911784/"
         - name: email
-          url: 'mailto:shangjr520@gmail'
+          url: "mailto:shangjr520@gmail"
 
   tw:
     languageName: "繁體中文"
-    languageAltTitle: "TW"       # Alternative short title
+    languageAltTitle: "TW" # Alternative short title
     weight: 2
-    contentDir: "content/tw"      # Directory for Chinese posts
+    contentDir: "content/tw" # Directory for Chinese posts
     menu:
       main:
         - name: About
@@ -132,15 +132,15 @@ languages:
       description: "中文版部落格"
       socialIcons:
         - name: github
-          url: 'https://github.com/nikeasyanzi/'
+          url: "https://github.com/nikeasyanzi/"
         - name: linkedin
-          url: 'https://www.linkedin.com/in/craig-yang-6b911784/'
+          url: "https://www.linkedin.com/in/craig-yang-6b911784/"
         - name: email
-          url: 'mailto:shangjr520@gmail'
+          url: "mailto:shangjr520@gmail"
 
 # Permalinks for posts
 permalinks:
-  post: "/:year/:month/:title/"   # Customize URL structure for posts
+  post: "/:year/:month/:title/" # Customize URL structure for posts
 
 # Enable RSS, sitemap, etc.
 enableRobotsTXT: true
@@ -157,7 +157,6 @@ outputs:
     - HTML
     - RSS
     - JSON
-
 
 services:
   youtube:
