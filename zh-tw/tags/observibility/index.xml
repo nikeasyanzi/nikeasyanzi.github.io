@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Observibility on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/zh-tw/tags/observibility/</link>
+    <description>Recent content in Observibility on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>zh-tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Sat, 18 Oct 2025 23:33:17 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/zh-tw/tags/observibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Grafana Loki 和 Alloy 收集系統日誌</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/system-log-collection-with-grafana-loki-and-alloy/</link>
+      <pubDate>Sat, 18 Oct 2025 23:33:17 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/system-log-collection-with-grafana-loki-and-alloy/</guid>
+      <description>展示如何使用 Grafana Alloy 和 Loki 收集系統日誌，並在 Grafana 上視覺化觀察 Nginx 日誌。</description>
+    </item>
+    <item>
+      <title>使用 cAdvisor 進行容器監控</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/container-monitoring-with-cadvisor/</link>
+      <pubDate>Sat, 11 Oct 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/container-monitoring-with-cadvisor/</guid>
+      <description>使用 cAdvisor 監控 Docker 容器，並透過 Prometheus 和 Grafana 視覺化容器指標資料。</description>
+    </item>
+    <item>
+      <title>使用 Prometheus 和 Grafana 進行視覺化監控</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/visualized-monitoring-with-prometheus-grafana/</link>
+      <pubDate>Fri, 05 Sep 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/visualized-monitoring-with-prometheus-grafana/</guid>
+      <description>使用 Docker Compose 設定 Prometheus 收集主機和 Nginx 指標，並在 Grafana 儀表板中視覺化呈現。</description>
+    </item>
+  </channel>
+</rss>

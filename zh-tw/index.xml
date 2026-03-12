@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/zh-tw/</link>
+    <description>Recent content on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>zh-tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Fri, 23 Jan 2026 16:43:38 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/zh-tw/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>可觀測性 Observability</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/observability/</link>
+      <pubDate>Fri, 23 Jan 2026 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/observability/</guid>
+      <description>介紹可觀測性的三大支柱：日誌、指標與追蹤，以及它們如何幫助你在微服務架構中除錯未知問題。</description>
+    </item>
+    <item>
+      <title>我的中文文章</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/chinese-post/</link>
+      <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/chinese-post/</guid>
+      <description>&lt;p&gt;這是中文內容。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 Grafana Loki 和 Alloy 收集系統日誌</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/system-log-collection-with-grafana-loki-and-alloy/</link>
+      <pubDate>Sat, 18 Oct 2025 23:33:17 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/system-log-collection-with-grafana-loki-and-alloy/</guid>
+      <description>展示如何使用 Grafana Alloy 和 Loki 收集系統日誌，並在 Grafana 上視覺化觀察 Nginx 日誌。</description>
+    </item>
+    <item>
+      <title>使用 cAdvisor 進行容器監控</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/container-monitoring-with-cadvisor/</link>
+      <pubDate>Sat, 11 Oct 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/container-monitoring-with-cadvisor/</guid>
+      <description>使用 cAdvisor 監控 Docker 容器，並透過 Prometheus 和 Grafana 視覺化容器指標資料。</description>
+    </item>
+    <item>
+      <title>使用 Prometheus 和 Grafana 進行視覺化監控</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/visualized-monitoring-with-prometheus-grafana/</link>
+      <pubDate>Fri, 05 Sep 2025 16:43:38 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/visualized-monitoring-with-prometheus-grafana/</guid>
+      <description>使用 Docker Compose 設定 Prometheus 收集主機和 Nginx 指標，並在 Grafana 儀表板中視覺化呈現。</description>
+    </item>
+    <item>
+      <title>Self hosting local n8n service</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/self-hosting-n8n-with-docker/</link>
+      <pubDate>Thu, 04 Sep 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/self-hosting-n8n-with-docker/</guid>
+      <description>使用 Docker Compose 和 PostgreSQL 自架 n8n 工作流自動化工具的完整教學。</description>
+    </item>
+    <item>
+      <title>使用 Ollama 和 Open WebUI 在一分鐘內自架本地 AI</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/self-hosting-chatgpt-in-a-minute/</link>
+      <pubDate>Tue, 22 Jul 2025 16:10:56 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/self-hosting-chatgpt-in-a-minute/</guid>
+      <description>使用 Ollama 和 Open WebUI 透過 Docker 容器快速自架類似 ChatGPT 的本地 AI 服務的逐步教學。</description>
+    </item>
+    <item>
+      <title>UV：Python 套件管理工具</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/uv/</link>
+      <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/uv/</guid>
+      <description>UV 是一款快速的 Python 套件和版本管理工具，可取代 venv、pip 和 pyenv，本文逐步介紹如何使用。</description>
+    </item>
+    <item>
+      <title>軟體介入解決硬體雜訊 (Software Intervention to Resolve Hardware Noise)</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/software-intervention-to-resolve-hardware-noise/</link>
+      <pubDate>Wed, 05 Feb 2025 10:30:00 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/software-intervention-to-resolve-hardware-noise/</guid>
+      <description>&lt;h2 id=&#34;簡介-introduction&#34;&gt;簡介 (Introduction)&lt;/h2&gt;
+&lt;p&gt;在系統工程中，我們很容易將「技術上正確」視為終點線。&lt;/p&gt;
+&lt;p&gt;但我從的經驗中學到，所謂的正確性仍然可能對你的客戶造成困擾——尤其是當你的軟體介於硬體、韌體、驅動程式時&lt;/p&gt;
+&lt;p&gt;這是一個關於務實與完美的故事。有時候，軟體必須吸收硬體雜訊去維持客户满意度。&lt;/p&gt;
+&lt;h2 id=&#34;問題連鎖誤報-the-problem-a-cascade-of-false-alarms&#34;&gt;問題：連鎖誤報 (The Problem: A Cascade of False Alarms)&lt;/h2&gt;
+&lt;p&gt;我們有一個 SSD 監控常駐程式 (daemon)，。有一天，一位客戶升級通報了一個嚴重問題：他們的機群突然大規模觸發 SSD 耗損警報。&lt;/p&gt;
+&lt;p&gt;我的直覺反應是標準的工程師反射動作：假設 bug 是我們造成的。&lt;/p&gt;
+&lt;p&gt;於是我逐行檢查程式碼。令人沮喪的是，程式碼看起來無懈可擊。我們完全按照設計讀取作業系統訊號並如實回報。&lt;/p&gt;
+&lt;p&gt;接著我們發現：&lt;strong&gt;訊號本身就是不穩定的 (flaky)&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在我們的 daemon 底層，特定的 SSD 韌體會在較低層級產生偽陽性 (false positives)。而我們的軟體——身為「正確」的一方正盡職地將這種狀況回報變成客戶的警報。&lt;/p&gt;
+&lt;p&gt;這造成了一個我不喜歡但無法避免的兩難：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;實作方式是 &lt;strong&gt;技術上正確的&lt;/strong&gt;，但它卻因為產生雜訊，導致 &lt;strong&gt;可能影響客戶的產品品質&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;這位客戶是第一位回報此事件的人，所以我們沒有既定的處理守則 (playbook)。&lt;/li&gt;
+&lt;li&gt;硬體供應商的退換貨流程 (RMA process) 需要數週時間。&lt;/li&gt;
+&lt;li&gt;客戶的產品發布就在幾天之後。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;解決方案啟發式過濾器-the-solution-a-heuristic-filter&#34;&gt;解決方案：啟發式過濾器 (The Solution: A Heuristic Filter)&lt;/h2&gt;
+&lt;p&gt;我們需要一個快速、安全且誠實的方案。&lt;/p&gt;
+&lt;p&gt;所以我實作了一個 &lt;strong&gt;啟發式過濾器 (heuristic filter)&lt;/strong&gt;——也就是一種防抖動 (debouncing) 機制。&lt;/p&gt;
+&lt;p&gt;用白話文說：我們不再是一看到單一的「磨損」訊號就發出警報，而是要求訊號必須在多次讀取中（或在一個短時間窗口內）持續存在。如果訊號是暫時性的，且在下一次檢查時消失，我們就將其視為雜訊。如果它持續存在，我們才視為真實情況。&lt;/p&gt;
+&lt;p&gt;關鍵的權衡在於延遲 (latency)。我們的 daemon 每隔幾秒檢查一次訊號，所以「確認」訊號的持續性可能會將警報延遲幾秒鐘（有時是幾分鐘，取決於時間窗口）。&lt;/p&gt;
+&lt;p&gt;對於 SSD 健康監控來說，這種輕微的延遲是可以接受的。畢竟這不是毫秒級的緊急事件；SSD的健康是一種趨勢。在這種情境下，回報有幾秒的延遲，遠比時不時的偽陽性警報來得好。&lt;/p&gt;
+&lt;p&gt;我與主管就溝通框架達成了一致：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;這是一個務實的修補程式，目的是為了讓客戶產品順利發布。但同時我們也必須請相關的團隊持續去推動供應商追蹤這個問題。。&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;結果解鎖與學習-the-result-unblocked-and-learned&#34;&gt;結果：解鎖與學習 (The Result: Unblocked and Learned)&lt;/h2&gt;
+&lt;p&gt;最後，客戶如期發布了產品。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Markdown Syntax Guide</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/markdown-syntax/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/markdown-syntax/</guid>
+      <description>Sample article showcasing basic Markdown syntax and formatting for HTML elements.</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/about/</guid>
+      <description>&lt;p&gt;I am a software engineer from Taiwan. Mainly focus on Linux, and Self hosting.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

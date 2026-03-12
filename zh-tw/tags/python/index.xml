@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Craig Yang&#39;s Blog</title>
+    <link>https://nikeasyanzi.github.io/zh-tw/tags/python/</link>
+    <description>Recent content in Python on Craig Yang&#39;s Blog</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>zh-tw</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Tue, 01 Jul 2025 22:40:45 +0800</lastBuildDate>
+    <atom:link href="https://nikeasyanzi.github.io/zh-tw/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UV：Python 套件管理工具</title>
+      <link>https://nikeasyanzi.github.io/zh-tw/posts/uv/</link>
+      <pubDate>Tue, 01 Jul 2025 22:40:45 +0800</pubDate>
+      <guid>https://nikeasyanzi.github.io/zh-tw/posts/uv/</guid>
+      <description>UV 是一款快速的 Python 套件和版本管理工具，可取代 venv、pip 和 pyenv，本文逐步介紹如何使用。</description>
+    </item>
+  </channel>
+</rss>
