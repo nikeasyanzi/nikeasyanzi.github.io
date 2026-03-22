@@ -1,7 +1,8 @@
 +++
-date = '2025-02-05T10:30:00+08:00'
+date = '2026-02-05T10:30:00+08:00'
 draft = false
 title = 'Software Intervention to Resolve Hardware Noise'
+description = 'A real-world story of resolving SSD false alarm storms caused by flaky firmware signals — balancing technical correctness with customer experience.'
 categories = ["System Engineering", "Problem Solving"]
 tags = ["SSD", "Hardware Monitoring", "Pragmatic Engineering", "Customer Obsession"]
 ShowToc = true
@@ -10,61 +11,49 @@ TocOpen = true
 
 ## Introduction
 
-In system engineering, it’s tempting to treat “technically correct” as the finish line.
-
-But I’ve learned the hard way that correctness can still create a bad customer experience—especially when your software is sitting between messy reality (hardware, firmware, drivers) and the person who just wants a clear signal: *Is something wrong, and do I need to act now?*
-
-This is the story of one uncomfortable moment that taught me a simple heuristic: sometimes, software has to absorb hardware noise.
+In system engineering, when your software must interact with underlying hardware, firmware, and drivers, it can still be disrupted by low-level noise even if the software logic is correct.
 
 ## The Problem: A Cascade of False Alarms
 
-We run an SSD monitoring daemon that reports wear-out metrics to customers. One day, a customer escalated a critical issue: their fleet was suddenly triggering SSD wear-out alarms at scale.
+We have an SSD monitoring daemon responsible for reporting SSD health status to our customers.
+One day, a customer's SSDs suddenly triggered wear-out metrics alarms on a massive scale.
+Coupled with the fact that they were about to release a new product, the incident was quite stressful.
 
-The timing couldn’t have been worse. Their release was measured in days, not weeks. And an “SSD health crisis” alert storm is the kind of thing that freezes decision-making—even if the systems are actually fine.
+Assuming the bug was our fault, I checked the code. The code was reading the OS signals exactly as designed and faithfully reporting them; everything looked perfectly normal.
 
-My first reaction was the classic engineer reflex: assume the bug is ours.
+However, the customer's report indicated that **the signal itself was flaky**.
 
-So I reviewed the code line by line. And frustratingly, it looked solid. We were reading the OS signals and reporting them exactly as designed.
+Beneath our daemon, a specific SSD firmware was generating false positives at a lower level. Our software was simply passing these signals along faithfully, resulting in these customer alarms.
 
-Then we found the uncomfortable truth: **the signal itself was flaky**.
+This created a dilemma:
 
-Underneath our daemon, a specific SSD firmware could produce false positives at a lower layer. And our software—being “correct”—was faithfully amplifying that flakiness into customer-facing alarms.
-
-That created a dilemma I didn’t love, but couldn’t avoid:
-
-- The implementation was **technically correct**, but it was **failing the customer** by producing noise instead of actionable information.
-- This customer was the first to report the incident, so we didn’t have a playbook.
-- The hardware vendor’s RMA process would take weeks.
-- The customer’s release was in days.
+- The implementation was **technically correct**, but it **wasn't the behavior the user expected** because it produced noise.
+- The hardware vendor hadn't currently received related reports. It would be extremely time-consuming to involve them for further investigation, and it definitely wouldn't be resolved in time for the customer's near-term release.
 
 ## The Solution: A Heuristic Filter
 
-We needed something fast, safe, and honest.
+So I implemented a debouncing mechanism.
 
-So I implemented a **heuristic filter**—a debouncing approach.
+Our software now requires the signal to persist across multiple reads (or within a short time window). If the signal is transient and disappears on the next check, we treat it as noise. We only treat it as a real situation if it persists.
 
-In plain English: instead of alarming the moment we see a single “wear” signal, we require the signal to persist across multiple reads (or across a short time window). If the signal is transient and disappears on the next check, we treat it as noise. If it stays, we treat it as real.
+* The tradeoff 
+    is latency. Our daemon checks the signal every few seconds, so "confirming" the signal's persistence might delay the alarm by a few seconds.
 
-The key tradeoff is latency. Our daemon checks the signal every few seconds, so “confirming” persistence can delay an alert by seconds (sometimes minutes, depending on the window).
-
-For SSD health monitoring, that slight delay is a good deal. Wear-out isn’t a millisecond-scale emergency; it’s a trend. In this context, it’s better to report a slightly delayed, trustworthy alert than to flood users with spikes that they can’t act on.
-
-I aligned with my manager on the framing:
-
-*This is a pragmatic patch to unblock the release. We’re not hiding the problem—we’re dampening noise while we drive a permanent vendor fix.*
+    For SSD health monitoring, it is not a millisecond-level emergency; it's a trend. In this context, a slightly delayed but reliable report is an acceptable solution. 
+    I also aligned with my manager on this; it was a pragmatic patch aimed at helping the customer release on schedule, while pushing the vendor for a follow-up fix plan.
 
 ## The Result: Unblocked and Learned
 
-The patch deployed smoothly. The false alarms stopped immediately. The customer shipped on schedule.
+The patch was deployed smoothly. The customer released their product on schedule.
 
-That said, the deeper issue was (and still is) a mystery. We still hadn’t identified the culprit stage in production that led to the flaky behavior. I asked our drive team to continue the follow-up and push for a root-cause diagnosis.
+That said, the deeper issue remains a mystery. We haven't yet confirmed the exact culprit stage in the production process that led to this flaky behavior. I've asked our drive team to continue tracking it and driving the root-cause diagnosis.
 
-The bigger lesson for me was not about SSDs—it was about what “correctness” means in the real world:
+For me, the bigger lesson was about what "software correctness" actually means in the real world:
 
-**“Technically correct” doesn’t automatically mean “works for the customer.”**
-
-If our job is to help customers operate systems confidently, then our job isn’t just to pass signals through. It’s to translate noisy reality into something stable, explainable, and actionable.
+If the job of the software is to help customers operate their systems with confidence, then the job is more than just passing along signals. We must translate a noisy reality into stable, explainable, and actionable information.
 
 ---
 
-Have you ever had to choose pragmatism over perfection to protect a customer experience? I’d love to hear what you did—and what you learned.
+**AI Writing Assistance Statement:**
+Portions of this manuscript, including structural organization, refinement of wording, and formatting of mathematical expressions, were assisted by generative AI. The core ideas, argumentative framework, and selection of examples were independently conceived and are the sole responsibility of the author.
+
