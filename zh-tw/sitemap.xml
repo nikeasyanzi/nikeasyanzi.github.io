@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nikeasyanzi.github.io/zh-tw/categories/</loc>
-    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -16,7 +16,7 @@
                 />
   </url><url>
     <loc>https://nikeasyanzi.github.io/zh-tw/</loc>
-    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -28,14 +28,11 @@
                 href="https://nikeasyanzi.github.io/zh-tw/"
                 />
   </url><url>
-    <loc>https://nikeasyanzi.github.io/zh-tw/categories/observability/</loc>
-    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
-  </url><url>
-    <loc>https://nikeasyanzi.github.io/zh-tw/tags/observability/</loc>
-    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
+    <loc>https://nikeasyanzi.github.io/zh-tw/tags/sales-kit/</loc>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
   </url><url>
     <loc>https://nikeasyanzi.github.io/zh-tw/tags/</loc>
-    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -46,6 +43,30 @@
                 hreflang="zh-tw"
                 href="https://nikeasyanzi.github.io/zh-tw/tags/"
                 />
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/tags/%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/tags/%E5%95%86%E6%A5%AD%E5%83%B9%E5%80%BC/</loc>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/tags/%E6%8F%90%E6%A1%88%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/categories/%E7%AD%96%E7%95%A5%E6%80%9D%E8%80%83-strategic-thinking/</loc>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/categories/%E8%81%B7%E5%A0%B4%E6%88%90%E9%95%B7-career-growth/</loc>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/posts/help-other-and-enable-teamwork/</loc>
+    <lastmod>2026-03-01T00:05:00+08:00</lastmod>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/categories/observability/</loc>
+    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
+  </url><url>
+    <loc>https://nikeasyanzi.github.io/zh-tw/tags/observability/</loc>
+    <lastmod>2026-01-23T16:43:38+08:00</lastmod>
   </url><url>
     <loc>https://nikeasyanzi.github.io/zh-tw/posts/observability/</loc>
     <lastmod>2026-01-23T16:43:38+08:00</lastmod>
